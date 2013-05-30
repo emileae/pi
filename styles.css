@@ -20,7 +20,7 @@ border: 2px solid blue;
 
 #keypad
 {
-height: 50%;
+height: 70%;
 width: 90%;
 position: absolute;
 bottom: 0px;
@@ -40,9 +40,44 @@ margin-bottom: 0.5%;
 border-radius: 5px;
 }
 
+.num
+{
+font-size: 2em;
+}
+
+#result
+{
+width: 95%;
+height: 10%;
+overflow-y: scroll;
+}
+
+#mode_box
+{
+margin: 5px;
+}
+
+#mode
+{
+float: left;
+margin-left: 10%;
+border: 1px solid black;
+border-radius: 5px;
+padding: 5px;
+}
+#current_position
+{
+float: right;
+margin-right: 10%;
+border: 1px solid black;
+border-radius: 5px;
+padding: 5px;
+}
+
 .right
 {
 margin-right: 1%;
+margin-left:0.5%;
 }
 .middle
 {
@@ -52,6 +87,7 @@ margin-left: 0.5%;
 .left
 {
 margin-left: 1%;
+margin-right: 0.5%;
 }
 
 
