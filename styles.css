@@ -1,0 +1,65 @@
+
+/*
+.key
+{
+width: 60px;
+height: 60px;
+margin: 20px;
+border: 2px solid black;
+float: left;
+text-align: center;
+}
+
+#keypad
+{
+height: 520px;
+width: 320px;
+border: 2px solid blue;
+}
+*/
+
+#keypad
+{
+height: 50%;
+width: 90%;
+position: absolute;
+bottom: 0px;
+margin-left: 5%;
+margin-right: 5%;
+}
+
+.key
+{
+width: 32%;
+height: 12.5%;
+float: left;
+text-align: center;
+background-color: rgba(0,0,0,0.2);
+margin-top: 0.5%;
+margin-bottom: 0.5%;
+border-radius: 5px;
+}
+
+.right
+{
+margin-right: 1%;
+}
+.middle
+{
+margin-right: 0.5%;
+margin-left: 0.5%;
+}
+.left
+{
+margin-left: 1%;
+}
+
+
+
+
+
+
+
+
+
+
