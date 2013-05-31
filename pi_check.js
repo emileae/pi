@@ -81,7 +81,7 @@ $(document).ready(function(){
                 clear_result();
             };
         };
-        
+        return false;// added because touching keys kept calling up the keyboard
     };
     
 });
