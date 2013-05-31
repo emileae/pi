@@ -25,13 +25,13 @@ $(document).ready(function(){
         $('.num').css('background-color', 'rgba(0,0,0,0.2)');
     };
     
-    $('#record_attempt').on('touchend', function(){
+    $('#record_attempt').on('touchend mouseup', function(){
         challenge = true;
         practice = false;
         clear_result();
         set_mode();
     });
-    $('#practice').on('touchend', function(){
+    $('#practice').on('touchend mouseup', function(){
         challenge = false;
         practice = true;
         set_mode();
@@ -60,7 +60,7 @@ $(document).ready(function(){
     });
     
     //Checking Pi
-    $('.num').on('touchend', check_digit);
+    $('.num').on('touchend mouseup', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Record: '+localStorage.record_pos)};
     
