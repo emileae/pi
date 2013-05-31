@@ -166,7 +166,7 @@ top: 10%;
 left: 5%;
 width: 80%;
 height: 85%;
-font-size: 2em;
+font-size: 1.5em;
 color: rgba(255,255,255,0.9);
 background-color: rgba(0,0,0,0.9);
 margin-right: auto;
@@ -190,8 +190,61 @@ text-align: center;
 border-radius: 10px;
 }
 
+/* Landmark classes */
+.lm_10
+{
+color: red;
+-webkit-transition:color 1s ease-in;
+}
+.lm_background_10
+{
+background-color: red;
+-webkit-transition:background-color 1s ease-in;
+}
 
+.lm_50
+{
+color: red;
+-webkit-transition:color 1s ease-in;
+}
+.lm_background_50
+{
+background-color: red;
+-webkit-transition:background-color 1s ease-in;
+}
 
+.lm_100
+{
+color: red;
+-webkit-transition:color 1s ease-in;
+}
+.lm_background_100
+{
+background-color: red;
+-webkit-transition:background-color 1s ease-in;
+}
+
+.lm_200
+{
+color: red;
+-webkit-transition:color 1s ease-in;
+}
+.lm_background_200
+{
+background-color: red;
+-webkit-transition:background-color 1s ease-in;
+}
+
+.lm_300
+{
+color: red;
+-webkit-transition:color 1s ease-in;
+}
+.lm_background_300
+{
+background-color: red;
+-webkit-transition:background-color 1s ease-in;
+}
 
 
 
