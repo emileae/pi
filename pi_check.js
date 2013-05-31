@@ -45,9 +45,11 @@ $(document).ready(function(){
     // Key color changes
     $('.key').on('touchstart', function(){
         $(this).css('background-color', 'rgba(0,0,0,0.8)');
+        return false;// added because touching keys kept calling up the keyboard
     });
     $('.key').on('touchend', function(){
         $(this).css('background-color', 'rgba(0,0,0,0.2)');
+        return false;// added because touching keys kept calling up the keyboard
     });
     
     //Checking Pi
