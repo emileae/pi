@@ -1,4 +1,7 @@
-
+*/*remove orange highlight*/
+{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
+}
 /*
 .key
 {
