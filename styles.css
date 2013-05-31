@@ -1,3 +1,20 @@
+body
+{
+margin: 0;
+padding: 0;
+}
+
+#frame
+{
+position: absolute;
+top: 0px;
+bottom: 0px;
+left: 0px;
+right: 0px;
+margin: 0;
+padding: 0;
+}
+
 */*remove orange highlight*/
 {
 -webkit-tap-highlight-color: transparent;
@@ -49,12 +66,16 @@ border-radius: 5px;
 .num
 {
 font-size: 2em;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
 }
 
 #result
 {
 width: 95%;
 height: 10%;
+margin-left: auto;
+margin-right: auto;
 word-wrap:break-word;
 overflow-y: scroll;
 }
