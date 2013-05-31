@@ -95,6 +95,19 @@ margin-left: auto;
 padding: 0;
 }
 
+.mode_key
+{
+width: 32%;
+height: 12.5%;
+float: left;
+text-align: center;
+background-color: rgba(0,0,0,0.2);
+margin-top: 0.5%;
+margin-bottom: 0.5%;
+border-radius: 5px;
+-webkit-tap-highlight-color: transparent;
+}
+
 #current_position
 {
 width: 30%;
