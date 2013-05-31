@@ -85,7 +85,7 @@ $(document).ready(function(){
     });
     
     //Checking Pi
-    $('.num').on('touchend', check_digit);
+    $('.num').on('touchend click', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Submit Record: '+localStorage.record_pos)};
     
@@ -96,7 +96,7 @@ $(document).ready(function(){
             
             //check for landmarks
             $('#current_position').attr('class','lm_background_'+current_pos+'')
-            $('#results_log').append('<span class="lm_'+lm_class+'">'+$(this).text()+'</span>');
+            $('#results_log').append('<span class="lm_'+current_pos+'">'+$(this).text()+'</span>');
             result_scroll.scrollToElement('#result_footer', 100);
             
             result_scroll.refresh();
