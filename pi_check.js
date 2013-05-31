@@ -50,7 +50,7 @@ $(document).ready(function(){
     });
     
     //Checking Pi
-    $('.num').on('touchend mouseup', check_digit);
+    $('.num').on('tap click', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Record: '+localStorage.record_pos)};
     
