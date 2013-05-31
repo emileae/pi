@@ -5,8 +5,8 @@ var current_pos = 1;
 $(document).ready(function(){
     
     //set frame to full width;
-    $('#frame').css('width', $(window).width());
-    $('#frame').css('height', $(window).height());
+    /*$('#frame').css('width', $(window).width());
+    $('#frame').css('height', $(window).height());*/
     
     //Select Mode
     var challenge = true;
@@ -25,13 +25,13 @@ $(document).ready(function(){
         $('.num').css('background-color', 'rgba(0,0,0,0.2)');
     };
     
-    $('#record_attempt').on('touchend mouseup', function(){
+    $('#record_attempt').on('touchend', function(){
         challenge = true;
         practice = false;
         clear_result();
         set_mode();
     });
-    $('#practice').on('touchend mouseup', function(){
+    $('#practice').on('touchend', function(){
         challenge = false;
         practice = true;
         set_mode();
@@ -60,7 +60,7 @@ $(document).ready(function(){
     });
     
     //Checking Pi
-    $('.num').on('touchend mouseup', check_digit);
+    $('.num').on('touchend', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Record: '+localStorage.record_pos)};
     
