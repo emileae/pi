@@ -66,14 +66,19 @@ border-radius: 5px;
 .num
 {
 font-size: 2em;
--webkit-touch-callout: none;
--webkit-user-select: none;
+-webkit-touch-callout: none;/*this fixed the highlight BUG*/
+-webkit-user-select: none;/*this fixed the highlight BUG*/
+}
+
+.fn_key
+{
+margin-top:1.5%;
 }
 
 #result
 {
 width: 95%;
-height: 10%;
+height: 20%;
 margin-left: auto;
 margin-right: auto;
 word-wrap:break-word;
@@ -82,24 +87,23 @@ overflow-y: scroll;
 
 #mode_box
 {
-margin: 5px;
+height: 10%;
+width: 80%;
+margin-right: auto;
+margin-left: auto;
+/*margin: 0;*/
+padding: 0;
 }
 
-#mode
-{
-float: left;
-margin-left: 10%;
-border: 1px solid black;
-border-radius: 5px;
-padding: 5px;
-}
 #current_position
 {
-float: right;
-margin-right: 10%;
+width: 30%;
+/*margin-right: auto;
+margin-left: auto;*/
 border: 1px solid black;
 border-radius: 5px;
 padding: 5px;
+display: inline-block;
 }
 
 .right
@@ -117,6 +121,7 @@ margin-left: 0.5%;
 margin-left: 1%;
 margin-right: 0.5%;
 }
+
 
 
 
