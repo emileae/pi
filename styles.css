@@ -1,6 +1,7 @@
 */*remove orange highlight*/
 {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
+-webkit-tap-highlight-color: transparent;
+/*-webkit-tap-highlight-color: rgba(255, 255, 255, 0);  */
 }
 /*
 .key
@@ -29,6 +30,7 @@ position: absolute;
 bottom: 0px;
 margin-left: 5%;
 margin-right: 5%;
+-webkit-tap-highlight-color: transparent;
 }
 
 .key
@@ -41,6 +43,7 @@ background-color: rgba(0,0,0,0.2);
 margin-top: 0.5%;
 margin-bottom: 0.5%;
 border-radius: 5px;
+-webkit-tap-highlight-color: transparent;
 }
 
 .num
@@ -52,6 +55,7 @@ font-size: 2em;
 {
 width: 95%;
 height: 10%;
+word-wrap:break-word;
 overflow-y: scroll;
 }
 
