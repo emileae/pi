@@ -59,14 +59,62 @@ $(document).ready(function(){
         };
     };
     
-    // Study button
-    $('#study').on('touchend', function(){
+    
+    
+    
+    
+    // Study button  for (var i = 0; i < shoes.length; i++) {};
+    $('#study').on('touchend mouseup', function(){
+        
+        $('body').append('<div id="overlay_container"><div id="overlay"><div id="overlay_close">Close</div></div>Loading...</div>');
         if (practice){
-            $('body').append('<div id="overlay"><div id="overlay_close">Close</div></div><div id="study_pi"><div class="scrollable">&#960 = 3.<br/>'+pi+'</div></div>');
+            
+            var num = 7;
+            //var reg_ex_original = /(\d{num})/g;
+            var reg_ex = new RegExp("(\\d{"+num+"})", "g");
+            
+            var pi_new = pi.replace(reg_ex, '$1 ').replace(/(^\s+|\s+$)/,'');//adds a space after every 4th digit then removes spaces from beginnign and end
+
+            var pi_i = 0;
+            var lm_pi = '';
+            for (var i=0; i<pi_new.length; i++){
+                var is_space = false;
+                if (pi_new[i] == " "){
+                    pi_i = pi_i
+                    is_space = true;
+                }else{
+                    pi_i++;
+                };
+                
+                var lm_10 = pi_i%10;
+                var lm_100 = pi_i%100;
+                var lm_1000 = pi_i%1000;
+                var lm_10k = pi_i%10000;
+                var lm_67k = pi_i%67890;//Lu Chao
+                var lm_100k = pi_i%100000;//Akira Haraguchi
+                
+                if (lm_10 ==0 && lm_100 !=0 && !is_space){
+                    var appnd = '<span class="red_span">'+pi_new[i]+'</span>';
+                }else if(lm_100 ==0 && !is_space){
+                    var appnd = '<span class="blue_span">'+pi_new[i]+'</span>';
+                }else{
+                    var appnd = pi_new[i];
+                };
+                
+                lm_pi = lm_pi+appnd;
+
+            };
+            
+            $('#overlay_container').append('<div id="study_pi"><div class="scrollable">&#960 = 3.<br/>'+lm_pi+'</div></div>');
             study_scroll = new iScroll('study_pi', {hScrollbar: false, vScrollbar: true, lockDirection: true });
         };
         
     });
+    /* END Study button */
+    
+    
+    
+    
     
     $('body').on('touchend', '#overlay #overlay_close', function(){
         $('#overlay').remove();

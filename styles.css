@@ -191,6 +191,16 @@ border-radius: 10px;
 }
 
 /* Landmark classes */
+.red_span
+{
+color: red;
+}
+.blue_span
+{
+color: blue;
+}
+
+
 .lm_10
 {
 color: #EBF21F;
