@@ -72,7 +72,7 @@ font-size: 2em;
 
 .fn_key
 {
-margin-top:1.5%;
+margin-top:3%;
 }
 
 #result
@@ -82,7 +82,18 @@ height: 20%;
 margin-left: auto;
 margin-right: auto;
 word-wrap:break-word;
-overflow-y: scroll;
+overflow:auto;
+}
+.scrollable
+{
+font-size: 2em;
+}
+#result_footer
+{
+position: absolute;
+width: 100%;
+clear: both;
+bottom: 0px;
 }
 
 #mode_box
@@ -110,7 +121,7 @@ border-radius: 5px;
 
 #current_position
 {
-width: 30%;
+width: 50%;
 /*margin-right: auto;
 margin-left: auto;*/
 border: 1px solid black;
@@ -135,10 +146,49 @@ margin-left: 1%;
 margin-right: 0.5%;
 }
 
+/* Overlay */
+#overlay
+{
+position: absolute;
+top:0px;
+left:0px;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.5);
+margin: 0;
+z-index: 100;
+}
 
+#study_pi
+{
+position: absolute;
+top: 10%;
+left: 5%;
+width: 80%;
+height: 85%;
+font-size: 2em;
+color: rgba(255,255,255,0.9);
+background-color: rgba(0,0,0,0.9);
+margin-right: auto;
+margin-left: auto;
+border: 1px solid black;
+word-wrap:break-word;
+z-index: 101;
+}
 
-
-
+#overlay_close
+{
+position: relative;
+width: 20%;
+height: 5%px;
+float: right;
+margin-right: 10%;
+border: 2px solid white;
+background-color: black;
+color: white;
+text-align: center;
+border-radius: 10px;
+}
 
 
 

@@ -11,6 +11,7 @@ $(document).ready(function(){
     //Select Mode
     var challenge = true;
     $('#record_attempt').css('background-color', 'rgba(0,0,0,0.9)');
+    $('#record_attempt').css('color', 'rgba(255,255,255,0.9)');
     var practice = false;
     
     var pi = '1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989';
@@ -18,8 +19,20 @@ $(document).ready(function(){
     // Clear Result
     $('#key_clear').on('touchend', clear_result);
     
+    // Study button
+    $('#study').on('touchend', function(){
+        $('body').append('<div id="overlay"><div id="overlay_close">Close</div></div><div id="study_pi"><div class="scrollable">3.<br/>'+pi+'</div></div>');
+        study_scroll = new iScroll('study_pi', {hScrollbar: false, vScrollbar: true, lockDirection: true });
+        
+    });
+    
+    $('body').on('touchend', '#overlay #overlay_close', function(){
+        $('#overlay').remove();
+        $('#study_pi').remove();
+    });
+    
     function clear_result (){
-        $('.scrollable').text('3.');
+        $('#results_log').text('3.');
         current_pos = 1;
         $('#current_position').text('Current Position: 0');
         $('.num').css('background-color', 'rgba(0,0,0,0.2)');
@@ -40,9 +53,13 @@ $(document).ready(function(){
     function set_mode(){
         if (challenge){
             $('#record_attempt').css('background-color', 'rgba(0,0,0,0.9)');
+            $('#record_attempt').css('color', 'rgba(255,255,255,0.9)');
+            $('#practice').css('color', 'black');
             $('#practice').css('background-color', 'rgba(0,0,0,0.2)');
         }else if (practice){
             $('#practice').css('background-color', 'rgba(0,0,0,0.9)');
+            $('#practice').css('color', 'rgba(255,255,255,0.9)');
+            $('#record_attempt').css('color', 'black');
             $('#record_attempt').css('background-color', 'rgba(0,0,0,0.2)');
             clear_result();
         };
@@ -62,13 +79,16 @@ $(document).ready(function(){
     //Checking Pi
     $('.num').on('touchend', check_digit);
     
-    if (localStorage.record_pos){$('#record').text('Record: '+localStorage.record_pos)};
+    if (localStorage.record_pos){$('#record').text('Submit Record: '+localStorage.record_pos)};
     
     function check_digit (){
         
         //checking input digits
         if($(this).text() == pi[current_pos-1]){
-            $('.scrollable').append($(this).text());
+            
+            $('#results_log').append($(this).text());
+            result_scroll.scrollToElement('#result_footer', 100);
+            
             result_scroll.refresh();
             if (localStorage.record_pos){
                 if (current_pos >= localStorage.record_pos && challenge == true){
