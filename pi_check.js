@@ -26,6 +26,7 @@ $(document).ready(function(){
         $('#results_log').text('3.');
         current_pos = 1;
         $('#current_position').text('Current Position: 0');
+        $('#current_position').css('background-color', 'rgb(255,255,255)');
         $('.num').css('background-color', 'rgba(0,0,0,0.2)');
     };
     
@@ -47,12 +48,13 @@ $(document).ready(function(){
             $('#record_attempt').css('color', 'rgba(255,255,255,0.9)');
             $('#practice').css('color', 'black');
             $('#practice').css('background-color', 'rgba(0,0,0,0.2)');
-            $('#study').html('<del>Study</del>')
+            $('#study').html('<del>Study</del>');
         }else if (practice){
             $('#practice').css('background-color', 'rgba(0,0,0,0.9)');
             $('#practice').css('color', 'rgba(255,255,255,0.9)');
             $('#record_attempt').css('color', 'black');
             $('#record_attempt').css('background-color', 'rgba(0,0,0,0.2)');
+             $('#study').html('Study');
             clear_result();
         };
     };
@@ -60,7 +62,6 @@ $(document).ready(function(){
     // Study button
     $('#study').on('touchend', function(){
         if (practice){
-            
             $('body').append('<div id="overlay"><div id="overlay_close">Close</div></div><div id="study_pi"><div class="scrollable">&#960 = 3.<br/>'+pi+'</div></div>');
             study_scroll = new iScroll('study_pi', {hScrollbar: false, vScrollbar: true, lockDirection: true });
         };
@@ -94,8 +95,7 @@ $(document).ready(function(){
         if($(this).text() == pi[current_pos-1]){
             
             //check for landmarks
-            if(current_pos == 10){var lm_class = '10'};
-            $('#current_position').addClass('lm_background_'+lm_class+'')
+            $('#current_position').attr('class','lm_background_'+current_pos+'')
             $('#results_log').append('<span class="lm_'+lm_class+'">'+$(this).text()+'</span>');
             result_scroll.scrollToElement('#result_footer', 100);
             

@@ -193,56 +193,89 @@ border-radius: 10px;
 /* Landmark classes */
 .lm_10
 {
-color: red;
+color: #EBF21F;
 -webkit-transition:color 1s ease-in;
 }
 .lm_background_10
 {
-background-color: red;
+background-color: #EBF21F;
 -webkit-transition:background-color 1s ease-in;
 }
 
 .lm_50
 {
-color: red;
+color: #C8F21F;
 -webkit-transition:color 1s ease-in;
 }
 .lm_background_50
 {
-background-color: red;
+background-color: #C8F21F;
 -webkit-transition:background-color 1s ease-in;
 }
 
 .lm_100
 {
-color: red;
+color: #1FF227;
 -webkit-transition:color 1s ease-in;
 }
 .lm_background_100
 {
-background-color: red;
+background-color: #1FF227;
 -webkit-transition:background-color 1s ease-in;
 }
 
 .lm_200
 {
-color: red;
+color: #1FF282;
 -webkit-transition:color 1s ease-in;
 }
 .lm_background_200
 {
-background-color: red;
+background-color: #1FF282;
 -webkit-transition:background-color 1s ease-in;
 }
 
-.lm_300
+.lm_400
 {
-color: red;
+color: #1FCFF2;
 -webkit-transition:color 1s ease-in;
 }
-.lm_background_300
+.lm_background_400
 {
-background-color: red;
+background-color: #1FCFF2;
+-webkit-transition:background-color 1s ease-in;
+}
+
+.lm_500
+{
+color: #1F85F2;
+-webkit-transition:color 1s ease-in;
+}
+.lm_background_500
+{
+background-color: #1F85F2;
+-webkit-transition:background-color 1s ease-in;
+}
+
+.lm_600
+{
+color: #3C1FF2;
+-webkit-transition:color 1s ease-in;
+}
+.lm_background_600
+{
+background-color: #3C1FF2;
+-webkit-transition:background-color 1s ease-in;
+}
+
+.lm_700
+{
+color: #B71FF2;
+-webkit-transition:color 1s ease-in;
+}
+.lm_background_700
+{
+background-color: #B71FF2;
 -webkit-transition:background-color 1s ease-in;
 }
 
