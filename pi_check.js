@@ -1,14 +1,21 @@
 
 //Set position in pi
-var current_pos = 1;
+var current_pos = 1;//12999
+var pos_in_list = ((current_pos-1) % 500);
 
-var pi = '1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989';
+var pi = ""
+var initial = false;
+
+var pi_1000 = '1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989';
 
 $(document).ready(function(){
     
-    //set frame to full width;
-    /*$('#frame').css('width', $(window).width());
-    $('#frame').css('height', $(window).height());*/
+    //var pre_load = pi_110000.slice(12500, 13001);
+    var pre_load = pi_1000;
+    pi = pre_load;
+    
+    //Hide Loading div
+    $('#loading_div').hide()
     
     //setting the #result_footer height to prevent crazy bouncing for first few digits
     $('#result_footer').css('height', '2em');
@@ -25,18 +32,19 @@ $(document).ready(function(){
     function clear_result (){
         $('#results_log').text('3.');
         current_pos = 1;
+        pos_in_list = 0;
         $('#current_position').text('Current Position: 0');
         $('#current_position').css('background-color', 'rgb(255,255,255)');
         $('.num').css('background-color', 'rgba(0,0,0,0.2)');
     };
     
-    $('#record_attempt').on('touchend', function(){
+    $('#record_attempt').on('touchend mouseup', function(){
         challenge = true;
         practice = false;
         clear_result();
         set_mode();
     });
-    $('#practice').on('touchend', function(){
+    $('#practice').on('touchend mouseup', function(){
         challenge = false;
         practice = true;
         set_mode();
@@ -63,7 +71,7 @@ $(document).ready(function(){
     
     // Study button  for (var i = 0; i < shoes.length; i++) {};
     
-    $('#study').on('touchend mouseup', function(){$('#loading_div').show(); var num = 5; study_notes(num)});
+    $('#study').on('touchend mouseup', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num)}});
     $('body').on('touchend mouseup', '#add', function(){$('#loading_div').show(); var num = Number($('#grouping_num').html())+1; print_study_digits(num)});
     $('body').on('touchend mouseup', '#subtract', function(){$('#loading_div').show(); var num = Number($('#grouping_num').html())-1; print_study_digits(num)});
         //changing number of digits to study
@@ -76,22 +84,21 @@ $(document).ready(function(){
         $('#loading_div').hide();
         
         $('body').append('<div id="overlay">\
-            <div id="grouping_adjust">\
-                Grouping: <span id="grouping_num">'+num+'</span>\
-                <button id="add" class="grp_adj">+</button> \
-                <button id="subtract" class="grp_adj">-</button>\
-                <span>No. of Digits</span>\
-                <button id="pi_5K_set" class="grp_adj">5K</button>\
-                <button id="pi_10K_set" class="grp_adj">10K</button>\
-                <button id="pi_110K_set" class="grp_adj">110K</button>\
-            </div>\
             <div id="overlay_close">Close</div>\
+            </div>\
             <div id="study_pi"><div class="scrollable">&#960 = 3.<br/></div></div>\
-            </div>');
-        if (practice){
+            <div id="grouping_adjust">\
+                Grouping: <div id="grouping_num">'+num+'</div>\
+                <div id="add" class="grp_adj">+</div><br>\
+                <div id="subtract" class="grp_adj">-</div><br>\
+                <div>No. of Digits</div>\
+                <div id="pi_5K_set" class="grp_adj">5K</div><br>\
+                <div id="pi_10K_set" class="grp_adj">10K</div><br>\
+                <div id="pi_110K_set" class="grp_adj">110K</div><br>\
+            </div>\
+            ');
+            
             print_study_digits(num)
-        };
-        
     };
     /* END Study button */
     
@@ -99,9 +106,15 @@ $(document).ready(function(){
     
     
     
-    $('body').on('touchend', '#overlay #overlay_close', function(){
+    $('body').on('touchend mouseup', '#overlay', function(){
         $('#overlay').remove();
         $('#study_pi').remove();
+        $('#grouping_adjust').remove();
+    });
+    $('body').on('touchend mouseup', '#overlay_close', function(){
+        $('#overlay').remove();
+        $('#study_pi').remove();
+        $('#grouping_adjust').remove();
     });
     
     
@@ -121,14 +134,10 @@ $(document).ready(function(){
     if (localStorage.record_pos){$('#record').text('Submit Record: '+localStorage.record_pos)};
     
     function check_digit (){
-        
+
         //checking input digits
-        if($(this).text() == pi[current_pos-1]){
-            
-            if (current_pos >= 900){ pi = pi_5000};
-            if (current_pos >= 4900){ pi = pi_10000};
-            if (current_pos >= 9900){ pi = pi_110000};
-            
+        if($(this).text() == pi[pos_in_list]){
+
             //check for landmarks
             $('#current_position').attr('class','lm_background_'+current_pos+'')
             $('#results_log').append('<span class="lm_'+current_pos+'">'+$(this).text()+'</span>');
@@ -147,10 +156,24 @@ $(document).ready(function(){
             
             $('#current_position').text('Current Position: '+current_pos);
             current_pos += 1;//update new position
+            //pos_in_list += 1;//update position in list
+            pos_in_list = ((current_pos-1) % 500);//update position in list
+            
+            var update_pi = false;
+            if (pos_in_list == 0){update_pi = true}
+            
+            if(update_pi){
+                pi = pi_110000.slice(current_pos-1, (current_pos+1000));
+                //console.log('RELOADED PI');
+                //console.log(pi)
+            };
+            
+            //console.log('current_pos: '+current_pos);
+            //console.log('pos_in_list: '+pos_in_list);
         }
         else{
             if (practice){
-                $('#key_'+pi[current_pos-1]).css('background-color', '#E01B25');//if incorrect input then highlight correct position in red
+                $('#key_'+pi[pos_in_list]).css('background-color', '#E01B25');//if incorrect input then highlight correct position in red
             }else if (challenge){
                 alert('Wrong! your record is: '+localStorage.record_pos+' digits!');
                 clear_result();
@@ -196,6 +219,8 @@ function print_study_digits (num){
             var appnd = '<span class="red_span">'+pi_new[i]+'</span>';
         }else if(lm_100 ==0 && lm_1000 !=0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
             var appnd = '<span class="blue_span">'+pi_new[i]+'</span>';
+        }else if(lm_1000 ==0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
+            var appnd = '<span class="orange_span">'+pi_new[i]+'</span>';
         }else if (lm_10k ==0 && lm_67k !=0 && lm_100k !=0 && !is_space){
             var appnd = '<span class="yellow_span">'+pi_new[i]+'</span>';
         }else if (lm_67k ==0 && lm_100k !=0 && !is_space){
@@ -209,7 +234,7 @@ function print_study_digits (num){
         lm_pi = lm_pi+appnd;
     };
 
-    $('#study_pi').children('.scrollable').html('&#960 = 3.<br/>'+lm_pi+'');
+    $('#study_pi').html('<div class="scrollable">&#960 = 3.<br/>'+lm_pi+'</div>');//added a new scrollable div since if html is added to old .scrollable text disappears
     study_scroll = new iScroll('study_pi', {hScrollbar: false, vScrollbar: true, lockDirection: true });
     
     $('#loading_div').hide()
