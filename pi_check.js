@@ -8,6 +8,8 @@ var initial = false;
 
 var pi_1000 = '1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989';
 
+var pi_study = pi_1000;
+
 $(document).ready(function(){
     
     //var pre_load = pi_110000.slice(12500, 13001);
@@ -41,12 +43,19 @@ $(document).ready(function(){
     $('#record_attempt').on('touchend mouseup', function(){
         challenge = true;
         practice = false;
+        current_pos = 1;
+        pos_in_list = ((current_pos-1) % 500);
+        pi = pre_load;
         clear_result();
         set_mode();
     });
     $('#practice').on('touchend mouseup', function(){
         challenge = false;
         practice = true;
+        current_pos = 1;
+        pos_in_list = ((current_pos-1) % 500);
+        pi = pre_load;
+        clear_result();
         set_mode();
     });
     
@@ -72,12 +81,34 @@ $(document).ready(function(){
     // Study button  for (var i = 0; i < shoes.length; i++) {};
     
     $('#study').on('touchend mouseup', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num)}});
-    $('body').on('touchend mouseup', '#add', function(){$('#loading_div').show(); var num = Number($('#grouping_num').html())+1; print_study_digits(num)});
-    $('body').on('touchend mouseup', '#subtract', function(){$('#loading_div').show(); var num = Number($('#grouping_num').html())-1; print_study_digits(num)});
+    $('body').on('touchend mouseup', '#add', function(){
+        $('#loading_div').show(); var num_digits = Number($('#num_digits').html()); var num = Number($('#grouping_num').html())+1; print_study_digits(num, num_digits)
+    });
+    $('body').on('touchend mouseup', '#subtract', function(){
+        $('#loading_div').show(); var num_digits = Number($('#num_digits').html()); var num = Number($('#grouping_num').html())-1; print_study_digits(num, num_digits)
+    });
+        
         //changing number of digits to study
-    $('body').on('touchend mouseup', '#pi_5K_set', function(){$('#loading_div').show(); pi = pi_5000; var num = Number($('#grouping_num').html()); print_study_digits(num)});
-    $('body').on('touchend mouseup', '#pi_10K_set', function(){$('#loading_div').show(); pi = pi_10000; var num = Number($('#grouping_num').html()); print_study_digits(num)});
-    $('body').on('touchend mouseup', '#pi_110K_set', function(){$('#loading_div').show(); pi = pi_110000; var num = Number($('#grouping_num').html()); print_study_digits(num)});
+    
+    $('body').on('touchend mouseup', '#pi_add_1000', function(){
+        $('#loading_div').show();
+        var num_digits = Number($('#num_digits').html());
+        var num = Number($('#grouping_num').html());
+        print_study_digits(num, num_digits)
+    });
+    
+    $('body').on('touchend mouseup', '#pi_1K_set', function(){
+        $('#loading_div').show(); var num_digits = 1; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
+    });
+    $('body').on('touchend mouseup', '#pi_5K_set', function(){
+        $('#loading_div').show(); var num_digits = 4000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
+    });
+    $('body').on('touchend mouseup', '#pi_10K_set', function(){
+        $('#loading_div').show(); var num_digits = 9000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
+    });
+    $('body').on('touchend mouseup', '#pi_110K_set', function(){
+        $('#loading_div').show(); var num_digits = 99000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
+    });
     
     function study_notes (num){
         
@@ -88,17 +119,26 @@ $(document).ready(function(){
             </div>\
             <div id="study_pi"><div class="scrollable">&#960 = 3.<br/></div></div>\
             <div id="grouping_adjust">\
-                Grouping: <div id="grouping_num">'+num+'</div>\
-                <div id="add" class="grp_adj">+</div><br>\
-                <div id="subtract" class="grp_adj">-</div><br>\
-                <div>No. of Digits</div>\
-                <div id="pi_5K_set" class="grp_adj">5K</div><br>\
-                <div id="pi_10K_set" class="grp_adj">10K</div><br>\
-                <div id="pi_110K_set" class="grp_adj">110K</div><br>\
+                <div class="grp_adj_rec">Grouping: <span id="grouping_num">'+num+'</span></div>\
+                \
+                <div id="grp_adj_container">\
+                    <div id="add" class="grp_adj">+</div>\
+                    <div id="subtract" class="grp_adj">-</div>\
+                </div>\
+                \
+                <div class="num_digit_rec">No. of Digits: <span id="num_digits">1000</span>\</div>\
+                \
+                <div id="num_digits_adjust_container">\
+                    <div id="pi_add_1000" class="digit_adj">add 1000 digits</div>\
+                    <div id="pi_1K_set" class="digit_adj">&#960 to 1001 digits</div>\
+                    <div id="pi_5K_set" class="digit_adj">&#960 to 5K digits</div>\
+                    <div id="pi_10K_set" class="digit_adj">&#960 to 10K digits</div>\
+                    <div id="pi_110K_set" class="digit_adj">&#960 to 100K</div>\
+                </div>\
             </div>\
             ');
             
-            print_study_digits(num)
+            print_study_digits(num, false)
     };
     /* END Study button */
     
@@ -139,8 +179,16 @@ $(document).ready(function(){
         if($(this).text() == pi[pos_in_list]){
 
             //check for landmarks
-            $('#current_position').attr('class','lm_background_'+current_pos+'')
-            $('#results_log').append('<span class="lm_'+current_pos+'">'+$(this).text()+'</span>');
+            var Class = lm_check(current_pos);
+            
+            if (Class != false){
+                $('#results_log').append('<span class="'+Class+'">'+$(this).text()+'</span>');
+                $('#current_position').attr('class', 'curr_pos_'+Class);
+            }else{
+                $('#results_log').append($(this).text());
+                $('#current_position').attr('class', 'background_ease_out');
+            };
+            
             result_scroll.scrollToElement('#result_footer', 100);
             
             result_scroll.refresh();
@@ -188,14 +236,19 @@ $(document).ready(function(){
 
 //External function for printing study digits
 
-function print_study_digits (num){
+function print_study_digits (num, num_digits){
     
     $('#grouping_num').html(num);
+    
+    if (num_digits != false){
+        pi_study = pi_110000.slice(0, (num_digits+1000));
+        $('#num_digits').html((num_digits+1000));
+    };
     
     //var reg_ex_original = /(\d{num})/g;
     var reg_ex = new RegExp("(\\d{"+num+"})", "g");
     
-    var pi_new = pi.replace(reg_ex, '$1 ').replace(/(^\s+|\s+$)/,'');//adds a space after every 4th digit then removes spaces from beginnign and end
+    var pi_new = pi_study.replace(reg_ex, '$1 ').replace(/(^\s+|\s+$)/,'');//adds a space after every 4th digit then removes spaces from beginnign and end
 
     var pi_i = 0;
     var lm_pi = '';
@@ -240,6 +293,47 @@ function print_study_digits (num){
     $('#loading_div').hide()
     
 };
+
+//Check for landmarks function
+function lm_check(digit){
+    
+    var is_space = false;
+    if (digit == " "){is_space = true};
+    
+    var Class = false
+    
+    var lm_10 = digit%10;
+    var lm_100 = digit%100;
+    var lm_1000 = digit%1000;
+    var lm_10k = digit%10000;
+    var lm_67k = digit%67890;//Lu Chao
+    var lm_100k = digit%100000;//Akira Haraguchi
+    
+    if (lm_10 ==0 && lm_100 !=0 && lm_1000 !=0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
+        Class = 'red_span';
+    }else if(lm_100 ==0 && lm_1000 !=0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
+        Class = 'blue_span';
+    }else if(lm_1000 ==0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
+        Class = 'green_span';
+    }else if (lm_10k ==0 && lm_67k !=0 && lm_100k !=0 && !is_space){
+        Class = 'yellow_span';
+    }else if (lm_67k ==0 && lm_100k !=0 && !is_space){
+        Class = 'orange_span';
+    }else if (lm_100k ==0 && !is_space){
+        Class = 'purple_span';
+    }else{
+        Class = false;
+    };
+    
+    return Class
+    
+};
+
+
+
+
+
+
 
 /* //Checking if browser supports local storage
     if(typeof(Storage)!=="undefined")
