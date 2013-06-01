@@ -1,4 +1,4 @@
-<!--<!DOCTYPE HTML>-->
+<!DOCTYPE HTML>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
@@ -16,6 +16,7 @@
     <script src="iscroll-lite.js"></script>
     <!--<script src="scroll.js"></script>-->
     <script src="pi_check.js"></script>
+    <script src="submit_record.js"></script>
     
     
     
@@ -65,7 +66,41 @@
 </html>
 
 
+<!--  phonegap form
+<form action="/pg_request" method="post" id="pg_request_form">
 
+    <label for="email">
+        <b>Email</b>
+        <input type="email" id="pg_email" name="email">
+    </label>
+    
+    <input type="submit" value="submit">
+
+</form>
+
+
+$('#pg_request_form').submit(function(){
+    var email = $('#pg_email').val();
+    $.ajax({
+        type: 'POST',
+        data: {email:email},
+        url: 'http://e-m-i-l-e.appspot.com/pg_request',
+        success: function(data){
+            console.log(data);
+            alert('Your comment was successfully added');
+        },
+        error: function(data){
+            console.log(data);
+            alert('There was an error adding your comment');
+        }
+    });
+    return false;
+});
+
+
+
+
+-->
 
 
 

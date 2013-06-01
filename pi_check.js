@@ -80,12 +80,12 @@ $(document).ready(function(){
     
     // Study button  for (var i = 0; i < shoes.length; i++) {};
     
-    $('#study').on('touchend mouseup', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num)}});
+    $('#study').on('touchend mouseup', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num, false)}});
     $('body').on('touchend mouseup', '#add', function(){
-        $('#loading_div').show(); var num_digits = Number($('#num_digits').html()); var num = Number($('#grouping_num').html())+1; print_study_digits(num, num_digits)
+        $('#loading_div').show(); var num_digits = Number($('#num_digits').html()-1000); var num = Number($('#grouping_num').html())+1; print_study_digits(num, num_digits)
     });
     $('body').on('touchend mouseup', '#subtract', function(){
-        $('#loading_div').show(); var num_digits = Number($('#num_digits').html()); var num = Number($('#grouping_num').html())-1; print_study_digits(num, num_digits)
+        $('#loading_div').show(); var num_digits = Number($('#num_digits').html()-1000); var num = Number($('#grouping_num').html())-1; print_study_digits(num, num_digits)
     });
         
         //changing number of digits to study
@@ -269,7 +269,7 @@ function print_study_digits (num, num_digits){
         var lm_100k = pi_i%100000;//Akira Haraguchi
         
         if (lm_10 ==0 && lm_100 !=0 && lm_1000 !=0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
-            var appnd = '<span class="red_span">'+pi_new[i]+'</span>';
+            var appnd = '<span class="brown_span">'+pi_new[i]+'</span>';
         }else if(lm_100 ==0 && lm_1000 !=0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
             var appnd = '<span class="blue_span">'+pi_new[i]+'</span>';
         }else if(lm_1000 ==0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
@@ -310,7 +310,7 @@ function lm_check(digit){
     var lm_100k = digit%100000;//Akira Haraguchi
     
     if (lm_10 ==0 && lm_100 !=0 && lm_1000 !=0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
-        Class = 'red_span';
+        Class = 'brown_span';
     }else if(lm_100 ==0 && lm_1000 !=0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
         Class = 'blue_span';
     }else if(lm_1000 ==0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
