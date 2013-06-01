@@ -4,15 +4,20 @@ margin: 0;
 padding: 0;
 }
 
-#frame
+#loading_div
 {
 position: absolute;
 top: 0px;
-bottom: 0px;
 left: 0px;
-right: 0px;
-margin: 0;
-padding: 0;
+display: none;
+margin: 0px;
+padding: 0px;
+width: 100%;
+height: 100%;
+background-color: black;
+color: white;
+font-size: 4em;
+z-index: 1000;
 }
 
 */*remove orange highlight*/
@@ -86,7 +91,7 @@ overflow:auto;
 }
 .scrollable
 {
-font-size: 2em;
+font-size: 1em;
 }
 #result_footer
 {
@@ -154,9 +159,19 @@ top:0px;
 left:0px;
 width: 100%;
 height: 100%;
-background-color: rgba(0,0,0,0.5);
+background-color: rgba(0,0,0,0.9);
 margin: 0;
 z-index: 100;
+}
+
+#grouping_adjust
+{
+color: white;
+}
+
+.grp_adj
+{
+width: 5%;
 }
 
 #study_pi
@@ -178,11 +193,13 @@ z-index: 101;
 
 #overlay_close
 {
-position: relative;
+position: absolute;
 width: 20%;
-height: 5%px;
-float: right;
+height: 5%;
+top: 0px;
+right: 0px;
 margin-right: 10%;
+margin-top: 10px;
 border: 2px solid white;
 background-color: black;
 color: white;
@@ -198,6 +215,18 @@ color: red;
 .blue_span
 {
 color: blue;
+}
+.yellow_span
+{
+color: yellow;
+}
+.green_span
+{
+color: green;
+}
+.purple_span
+{
+color: #A300D9;
 }
 
 

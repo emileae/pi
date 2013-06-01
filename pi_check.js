@@ -2,6 +2,8 @@
 //Set position in pi
 var current_pos = 1;
 
+var pi = '1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989';
+
 $(document).ready(function(){
     
     //set frame to full width;
@@ -16,8 +18,6 @@ $(document).ready(function(){
     $('#practice').css('background-color', 'rgba(0,0,0,0.9)');
     $('#practice').css('color', 'rgba(255,255,255,0.9)');
     var practice = true;
-    
-    var pi = '1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989';
     
     // Clear Result
     $('#key_clear').on('touchend', clear_result);
@@ -58,58 +58,41 @@ $(document).ready(function(){
             clear_result();
         };
     };
-    
-    
-    
+
     
     
     // Study button  for (var i = 0; i < shoes.length; i++) {};
-    $('#study').on('touchend mouseup', function(){
+    
+    $('#study').on('touchend mouseup', function(){$('#loading_div').show(); var num = 5; study_notes(num)});
+    $('body').on('touchend mouseup', '#add', function(){$('#loading_div').show(); var num = Number($('#grouping_num').html())+1; print_study_digits(num)});
+    $('body').on('touchend mouseup', '#subtract', function(){$('#loading_div').show(); var num = Number($('#grouping_num').html())-1; print_study_digits(num)});
+        //changing number of digits to study
+    $('body').on('touchend mouseup', '#pi_5K_set', function(){$('#loading_div').show(); pi = pi_5000; var num = Number($('#grouping_num').html()); print_study_digits(num)});
+    $('body').on('touchend mouseup', '#pi_10K_set', function(){$('#loading_div').show(); pi = pi_10000; var num = Number($('#grouping_num').html()); print_study_digits(num)});
+    $('body').on('touchend mouseup', '#pi_110K_set', function(){$('#loading_div').show(); pi = pi_110000; var num = Number($('#grouping_num').html()); print_study_digits(num)});
+    
+    function study_notes (num){
         
-        $('body').append('<div id="overlay_container"><div id="overlay"><div id="overlay_close">Close</div></div>Loading...</div>');
+        $('#loading_div').hide();
+        
+        $('body').append('<div id="overlay">\
+            <div id="grouping_adjust">\
+                Grouping: <span id="grouping_num">'+num+'</span>\
+                <button id="add" class="grp_adj">+</button> \
+                <button id="subtract" class="grp_adj">-</button>\
+                <span>No. of Digits</span>\
+                <button id="pi_5K_set" class="grp_adj">5K</button>\
+                <button id="pi_10K_set" class="grp_adj">10K</button>\
+                <button id="pi_110K_set" class="grp_adj">110K</button>\
+            </div>\
+            <div id="overlay_close">Close</div>\
+            <div id="study_pi"><div class="scrollable">&#960 = 3.<br/></div></div>\
+            </div>');
         if (practice){
-            
-            var num = 7;
-            //var reg_ex_original = /(\d{num})/g;
-            var reg_ex = new RegExp("(\\d{"+num+"})", "g");
-            
-            var pi_new = pi.replace(reg_ex, '$1 ').replace(/(^\s+|\s+$)/,'');//adds a space after every 4th digit then removes spaces from beginnign and end
-
-            var pi_i = 0;
-            var lm_pi = '';
-            for (var i=0; i<pi_new.length; i++){
-                var is_space = false;
-                if (pi_new[i] == " "){
-                    pi_i = pi_i
-                    is_space = true;
-                }else{
-                    pi_i++;
-                };
-                
-                var lm_10 = pi_i%10;
-                var lm_100 = pi_i%100;
-                var lm_1000 = pi_i%1000;
-                var lm_10k = pi_i%10000;
-                var lm_67k = pi_i%67890;//Lu Chao
-                var lm_100k = pi_i%100000;//Akira Haraguchi
-                
-                if (lm_10 ==0 && lm_100 !=0 && !is_space){
-                    var appnd = '<span class="red_span">'+pi_new[i]+'</span>';
-                }else if(lm_100 ==0 && !is_space){
-                    var appnd = '<span class="blue_span">'+pi_new[i]+'</span>';
-                }else{
-                    var appnd = pi_new[i];
-                };
-                
-                lm_pi = lm_pi+appnd;
-
-            };
-            
-            $('#overlay_container').append('<div id="study_pi"><div class="scrollable">&#960 = 3.<br/>'+lm_pi+'</div></div>');
-            study_scroll = new iScroll('study_pi', {hScrollbar: false, vScrollbar: true, lockDirection: true });
+            print_study_digits(num)
         };
         
-    });
+    };
     /* END Study button */
     
     
@@ -141,6 +124,10 @@ $(document).ready(function(){
         
         //checking input digits
         if($(this).text() == pi[current_pos-1]){
+            
+            if (current_pos >= 900){ pi = pi_5000};
+            if (current_pos >= 4900){ pi = pi_10000};
+            if (current_pos >= 9900){ pi = pi_110000};
             
             //check for landmarks
             $('#current_position').attr('class','lm_background_'+current_pos+'')
@@ -175,6 +162,59 @@ $(document).ready(function(){
     result_scroll = new iScroll('result', {hScrollbar: false, vScrollbar: true, lockDirection: true });
     
 });
+
+//External function for printing study digits
+
+function print_study_digits (num){
+    
+    $('#grouping_num').html(num);
+    
+    //var reg_ex_original = /(\d{num})/g;
+    var reg_ex = new RegExp("(\\d{"+num+"})", "g");
+    
+    var pi_new = pi.replace(reg_ex, '$1 ').replace(/(^\s+|\s+$)/,'');//adds a space after every 4th digit then removes spaces from beginnign and end
+
+    var pi_i = 0;
+    var lm_pi = '';
+    for (var i=0; i<pi_new.length; i++){
+        var is_space = false;
+        if (pi_new[i] == " "){
+            pi_i = pi_i
+            is_space = true;
+        }else{
+            pi_i++;
+        };
+        
+        var lm_10 = pi_i%10;
+        var lm_100 = pi_i%100;
+        var lm_1000 = pi_i%1000;
+        var lm_10k = pi_i%10000;
+        var lm_67k = pi_i%67890;//Lu Chao
+        var lm_100k = pi_i%100000;//Akira Haraguchi
+        
+        if (lm_10 ==0 && lm_100 !=0 && lm_1000 !=0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
+            var appnd = '<span class="red_span">'+pi_new[i]+'</span>';
+        }else if(lm_100 ==0 && lm_1000 !=0 && lm_10k !=0 && lm_67k !=0 && lm_100k !=0 && !is_space){
+            var appnd = '<span class="blue_span">'+pi_new[i]+'</span>';
+        }else if (lm_10k ==0 && lm_67k !=0 && lm_100k !=0 && !is_space){
+            var appnd = '<span class="yellow_span">'+pi_new[i]+'</span>';
+        }else if (lm_67k ==0 && lm_100k !=0 && !is_space){
+            var appnd = '<span class="green_span">'+pi_new[i]+'</span>';
+        }else if (lm_100k ==0 && !is_space){
+            var appnd = '<span class="purple_span">'+pi_new[i]+'</span>';
+        }else{
+            var appnd = pi_new[i];
+        };
+        
+        lm_pi = lm_pi+appnd;
+    };
+
+    $('#study_pi').children('.scrollable').html('&#960 = 3.<br/>'+lm_pi+'');
+    study_scroll = new iScroll('study_pi', {hScrollbar: false, vScrollbar: true, lockDirection: true });
+    
+    $('#loading_div').hide()
+    
+};
 
 /* //Checking if browser supports local storage
     if(typeof(Storage)!=="undefined")
