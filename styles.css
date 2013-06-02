@@ -3,7 +3,8 @@ body
 margin: 0;
 padding: 0;
 background-color: #302C2C;
-color: #E3D5D5;
+/*color: #E3D5D5;*/
+color: #EDE4E4;;
 }
 
 #loading_div
@@ -170,7 +171,7 @@ position: absolute;
 bottom: 42%;
 width: 90%;
 height: 50%;
-color: rgba(255,255,255,0.9);
+color: #EDE4E4;
 background-color: rgba(0,0,0,0.9);
 margin-left: 5%;
 margin-left: 5%;
@@ -282,7 +283,7 @@ color: #A300D9;
 /*background-color for current position div*/
 .background_ease_out
 {
-background-color: rgb(255,255,255);
+background-color: #1F1515;
 -webkit-transition:background-color 0.3s ease-in;
 }
 .curr_pos_brown_span
