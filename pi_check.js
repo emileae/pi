@@ -88,13 +88,21 @@ $(document).ready(function(){
     
     // Study button  for (var i = 0; i < shoes.length; i++) {};
     
-    $('#study').on('touchend', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num, false)}});
+    $('#study').on('touchend mouseup', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num, false)}});
     
     $('body').on('touchend', '#add', function(){
         $('#loading_div').show(); var num_digits = Number($('#num_digits').html()-1000); var num = Number($('#grouping_num').html())+1; print_study_digits(num, num_digits)
     });
     $('body').on('touchend', '#subtract', function(){
-        $('#loading_div').show(); var num_digits = Number($('#num_digits').html()-1000); var num = Number($('#grouping_num').html())-1; print_study_digits(num, num_digits)
+        $('#loading_div').show();
+        var num_digits = Number($('#num_digits').html()-1000);
+        var num = Number($('#grouping_num').html())-1;
+        if (num>0){
+            num = num
+        }else{
+            num = 1;
+        };
+        print_study_digits(num, num_digits)
     });
         
         //changing number of digits to study
@@ -169,18 +177,30 @@ $(document).ready(function(){
     
     // Key color changes
     $('.key').on('touchstart', function(){
-        $(this).css('background-color', 'rgba(0,0,0,0.8)');
+        $(this).css('background-color', 'rgba(100,100,100,0.8)');
         return false;// added because touching keys kept calling up the keyboard
     });
     $('.key').on('touchend', function(){
-        $(this).css('background-color', 'rgba(0,0,0,0.2)');
+        $(this).css('background-color', 'rgba(20,20,20,0.8)');
         return false;// added because touching keys kept calling up the keyboard diabling user select probably did the trick though
     });
     $('.fn_key').on('touchstart', function(){
-        $(this).css('background-color', 'rgba(0,0,0,0.8)');
+        $(this).css('background-color', '#331721');
     });
     $('.fn_key').on('touchend', function(){
-        $(this).css('background-color', 'rgba(0,0,0,0.2)');
+        $(this).css('background-color', '#1A060D');
+    });
+    $('body').on('touchstart', '.grp_adj', function(){
+        $(this).css('background-color', '#331721');
+    });
+    $('body').on('touchend', '.grp_adj', function(){
+        $(this).css('background-color', '#1A060D');
+    });
+    $('body').on('touchstart', '.digit_adj', function(){
+        $(this).css('background-color', '#331721');
+    });
+    $('body').on('touchend', '.digit_adj', function(){
+        $(this).css('background-color', '#1A060D');
     });
     
     //Checking Pi
@@ -230,9 +250,9 @@ $(document).ready(function(){
         }
         else{
             if (practice){
-                $('#key_'+pi[pos_in_list]).css('background-color', '#E01B25');//if incorrect input then highlight correct position in red
+                $('#key_'+pi[pos_in_list]).css('background-color', '#C21313');//if incorrect input then highlight correct position in red
             }else if (challenge){
-                alert('Wrong! your record is: '+localStorage.record_pos+' digits!');
+                alert('Incorrect! your record is: '+localStorage.record_pos+' digits.');
                 clear_result();
             };
         };

@@ -1,38 +1,42 @@
 $(document).ready(function(){
-    
-        $('body').on('touchend', '#record', function(){
-            
-            $('body').append('\
-                <div id="record_submit_overlay">\
-                    <div id="overlay_close">Close</div>\
-                </div>\
-                \
-                <div id="record_submit_form_container">\
-                    <div>Your Score is : '+localStorage.record_pos+'</div>\
+        
+        if (localStorage.record_pos != undefined){
+        
+            $('body').on('touchend', '#record', function(){
+                
+                $('body').append('\
+                    <div id="record_submit_overlay">\
+                        <div id="overlay_close">Close</div>\
+                    </div>\
                     \
-                    <br>\
-                    \
-                    <form action="emile-pi.appspot.com/submit_record" method="post" id="pi_score_form">\
-                        \
-                        <label for="name">\
-                            <b>Please enter your name</b>\
-                            <input type="text" id="pi_name" name="name">\
-                        </label>\
-                            <input type="hidden" id="pi_score" name="score" value="'+localStorage.record_pos+'">\
+                    <div id="record_submit_form_container">\
+                        <div>Your Score is : '+localStorage.record_pos+'</div>\
                         \
                         <br>\
                         \
-                        <input class="submit_btn" type="submit" value="submit">\
-                        \
-                    </form>\
-                    <div id="form_loading_indicator" style="width:100%; text-align:center;">Loading</div>\
-                </div>\
-                \
-            ')
-            
-            $('#form_loading_indicator').hide();
-            
-        });
+                        <form action="emile-pi.appspot.com/submit_record" method="post" id="pi_score_form">\
+                            \
+                            <label for="name">\
+                                <b>Please enter your name</b>\
+                                <input type="text" id="pi_name" name="name">\
+                            </label>\
+                                <input type="hidden" id="pi_score" name="score" value="'+localStorage.record_pos+'">\
+                            \
+                            <br>\
+                            \
+                            <input class="submit_btn" type="submit" value="submit">\
+                            \
+                        </form>\
+                        <div id="form_loading_indicator" style="width:100%; text-align:center;">Loading</div>\
+                    </div>\
+                    \
+                ')
+                
+                $('#form_loading_indicator').hide();
+                
+            });
+        
+        };
         
     $('body').on('touchend', '#overlay_close', close_submit_overlay);
     
