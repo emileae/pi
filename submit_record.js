@@ -25,9 +25,13 @@ $(document).ready(function(){
                         <input class="submit_btn" type="submit" value="submit">\
                         \
                     </form>\
+                    <div id="form_loading_indicator" style="width:100%; text-align:center;">Loading</div>\
                 </div>\
                 \
             ')
+            
+            $('#form_loading_indicator').hide();
+            
         });
         
     $('body').on('touchend', '#overlay_close', close_submit_overlay);
@@ -38,19 +42,25 @@ $(document).ready(function(){
     };
     
     $('body').on('submit', '#pi_score_form', function(){
+        
+        $('#form_loading_indicator').show();
+        
         var name = $('#pi_name').val();
-         var score = $('#pi_score').val();
+        var score = $('#pi_score').val();
+         
         $.ajax({
             type: 'POST',
             data: {name:name, score:score},
             url: 'http://emile-pi.appspot.com/submit_record',
             success: function(data){
                 console.log(data);
+                $('#form_loading_indicator').hide();
                 alert('Your record was successfully submitted');
                 close_submit_overlay();
             },
             error: function(data){
                 console.log(data);
+                $('#form_loading_indicator').hide();
                 alert('There was an error adding your record, please try again later');
                 close_submit_overlay();
             }
