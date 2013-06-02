@@ -1,11 +1,34 @@
 $(document).ready(function(){
     var record = localStorage.record_pos;
     
-    //if (record){
         $('body').on('touchend mouseup', '#record', function(){
-            show_record_form(record);
+            
+            $('body').append('\
+                <div id="record_submit_overlay">\
+                </div>\
+                \
+                <div id="record_submit_form_container">\
+                    <div>Your Score is : '+record+'</div>\
+                    \
+                    <br>\
+                    \
+                    <form action="emile-pi.appspot.com/submit_record" method="post" id="pi_score_form">\
+                        \
+                        <label for="name">\
+                            <b>Please enter your name</b>\
+                            <input type="text" id="pi_name" name="name">\
+                        </label>\
+                            <input type="hidden" id="pi_score" name="score" value="'+record+'">\
+                        \
+                        <br>\
+                        \
+                        <input class="submit_btn" type="submit" value="submit">\
+                        \
+                    </form>\
+                </div>\
+                \
+            ')
         });
-    //};
     
     $('body').on('touchend mouseup', '#record_submit_overlay', function(){
         
@@ -34,9 +57,8 @@ $(document).ready(function(){
     
     
 });
-
+/*
 function show_record_form(record){
-    //alert('yoyo');
     $('body').append('\
         <div id="record_submit_overlay">\
         </div>\
@@ -62,4 +84,4 @@ function show_record_form(record){
         </div>\
         \
     ')
-};
+};*/
