@@ -36,6 +36,7 @@ $(document).ready(function(){
 });
 
 function show_record_form(record){
+    alert('yoyo');
     $('body').append('\
         <div id="record_submit_overlay">\
         </div>\
