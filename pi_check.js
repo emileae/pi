@@ -48,7 +48,7 @@ $(document).ready(function(){
         $('.num').css('background-color', 'rgba(20,20,20,0.8)');
     };
     
-    $('#record_attempt').on('touchend mouseup', function(){
+    $('#record_attempt').on('touchend', function(){
         challenge = true;
         practice = false;
         current_pos = 1;
@@ -57,7 +57,7 @@ $(document).ready(function(){
         clear_result();
         set_mode();
     });
-    $('#practice').on('touchend mouseup', function(){
+    $('#practice').on('touchend', function(){
         challenge = false;
         practice = true;
         current_pos = 1;
@@ -87,8 +87,7 @@ $(document).ready(function(){
     
     
     // Study button  for (var i = 0; i < shoes.length; i++) {};
-    
-    $('#study').on('touchend', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num, false)}});
+    $('#study').on('touchstart', function(){$('#loading_div').show(); if (practice){var num = 5; study_notes(num, false)}else{$('#loading_div').hide();}});
     
     $('body').on('touchend', '#add', function(){
         $('#loading_div').show(); var num_digits = Number($('#num_digits').html()-1000); var num = Number($('#grouping_num').html())+1; print_study_digits(num, num_digits)
@@ -175,7 +174,7 @@ $(document).ready(function(){
     });
     
     
-    // Key color changes
+    // Key color changes && feedback
     $('.key').on('touchstart', function(){
         $(this).css('background-color', 'rgba(100,100,100,0.8)');
         return false;// added because touching keys kept calling up the keyboard
@@ -204,7 +203,7 @@ $(document).ready(function(){
     });
     
     //Checking Pi
-    $('.num').on('touchend mouseup', check_digit);
+    $('.num').on('touchend', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Submit Record: '+localStorage.record_pos)};
     

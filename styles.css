@@ -4,7 +4,7 @@ margin: 0;
 padding: 0;
 background-color: #302C2C;
 /*color: #E3D5D5;*/
-color: #EDE4E4;;
+color: #EDE4E4;
 }
 
 #loading_div
@@ -336,6 +336,7 @@ z-index: 200;
 {
 position: absolute;
 width: 50%;
+height: 75%;
 top: 20%;
 margin-left: 25%;
 margin-right: 25%;
@@ -343,6 +344,57 @@ border: 1px solid white;
 z-index: 201;
 color: white;
 background-color: rgb(10,10,10);
+}
+
+#log_container
+{
+width: 95%;
+height: 50%;
+margin-left:auto;
+margin-right: auto;
+}
+
+.log_box
+{
+width: 90%;
+margin-left: 5%;
+margin-right: 5%;
+text-align: center;
+}
+
+#score_log
+{
+font-size: 3em;
+}
+#rank_log
+{
+font-size: 2em;
+}
+#id_log
+{
+font-size: 0.9em;
+}
+
+#pi_score_form
+{
+margin: 0px;
+padding: 0px;
+width: 100%;
+position: absolute;
+bottom: 5%;
+}
+
+.submit_btn
+{
+background-color: #1A060D;
+border-radius: 10px;
+font-size: 1.5em;
+color: #EDE4E4;
+}
+
+.submit_btn:active
+{
+background-color: #331721;
 }
 
 #pi_name

@@ -4,14 +4,18 @@ $(document).ready(function(){
         
             $('body').on('touchend mouseup', '#record', function(){
                 
-                if (localStorage.name_id){
+                if (!localStorage.name_id){
                     $('body').append('\
                         <div id="record_submit_overlay">\
                             <div id="overlay_close">Close</div>\
                         </div>\
                         \
                         <div id="record_submit_form_container">\
-                            <div>Your Score is : '+localStorage.record_pos+' your id is: '+localStorage.name_id+' your rank is: '+localStorage.rank+'</div>\
+                            <div id="log_container">\
+                                <div id="score_log" class="log_box">Record: '+localStorage.record_pos+'</div>\
+                                <div id="rank_log" class="log_box">Rank: '+localStorage.rank+'</div>\
+                                <div id="id_log" class="log_box">ID: '+localStorage.name_id+'</div>\
+                            </div>\
                             \
                             <br>\
                             \
@@ -23,7 +27,7 @@ $(document).ready(function(){
                                 \
                                 <br>\
                                 \
-                                <input class="submit_btn" type="submit" value="submit">\
+                                <input class="submit_btn" type="submit" value="Submit my Record">\
                                 \
                             </form>\
                             <div id="form_loading_indicator" style="width:100%; text-align:center;">Loading</div>\
