@@ -48,7 +48,7 @@ function show_record_form(record){
                         <b>Please enter your name</b>\
                         <input type="text" id="pi_name" name="name">\
                     </label>\
-                        <input type="hidden" id="pi_score" name="score" val="'+record+'">\
+                        <input type="hidden" id="pi_score" name="score" value="'+record+'">\
                     \
                     <br>\
                     \
