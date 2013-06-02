@@ -173,15 +173,13 @@ $(document).ready(function(){
     });
     $('.key').on('touchend mouseup', function(){
         $(this).css('background-color', 'rgba(0,0,0,0.2)');
-        return false;// added because touching keys kept calling up the keyboard
+        return false;// added because touching keys kept calling up the keyboard diabling user select probably did the trick though
     });
     $('.fn_key').on('touchstart mousedown', function(){
         $(this).css('background-color', 'rgba(0,0,0,0.8)');
-        //return false;// added because touching keys kept calling up the keyboard
     });
     $('.fn_key').on('touchend mouseup', function(){
         $(this).css('background-color', 'rgba(0,0,0,0.2)');
-        //return false;// added because touching keys kept calling up the keyboard
     });
     
     //Checking Pi

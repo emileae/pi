@@ -1,11 +1,11 @@
 $(document).ready(function(){
     var record = localStorage.record_pos;
     
-    if (record){
+    //if (record){
         $('body').on('touchend mouseup', '#record', function(){
             show_record_form(record);
         });
-    };
+    //};
     
     $('body').on('touchend mouseup', '#record_submit_overlay', function(){
         
@@ -36,7 +36,7 @@ $(document).ready(function(){
 });
 
 function show_record_form(record){
-    alert('yoyo');
+    //alert('yoyo');
     $('body').append('\
         <div id="record_submit_overlay">\
         </div>\
