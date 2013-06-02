@@ -1,8 +1,6 @@
 $(document).ready(function(){
         
-        var record_to_submit = localStorage.record_pos;
-        
-        if (localStorage.record_pos == undefined){record_to_submit = 0;};
+        if (localStorage.record_pos == undefined){localStorage.record_pos = 0;};
         
             $('body').on('touchend', '#record', function(){
                 
@@ -12,7 +10,7 @@ $(document).ready(function(){
                     </div>\
                     \
                     <div id="record_submit_form_container">\
-                        <div>Your Score is : '+record_to_submit+'</div>\
+                        <div>Your Score is : '+localStorage.record_pos+'</div>\
                         \
                         <br>\
                         \
@@ -22,7 +20,7 @@ $(document).ready(function(){
                                 <b>Please enter your name</b>\
                                 <input type="text" id="pi_name" name="name">\
                             </label>\
-                                <input type="hidden" id="pi_score" name="score" value="'+record_to_submit+'">\
+                                <input type="hidden" id="pi_score" name="score" value="'+localStorage.record_pos+'">\
                             \
                             <br>\
                             \
