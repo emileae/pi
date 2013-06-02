@@ -1,11 +1,14 @@
 $(document).ready(function(){
     var record = localStorage.record_pos;
     
-    $('body').on('touchend mouseup', '#record', function(){
-        show_record_form(record);
-    });
+    if (record){
+        $('body').on('touchend mouseup', '#record', function(){
+            show_record_form(record);
+        });
+    };
     
-    $('body').on('touchstart mousedown', '#record_submit_overlay', function(){
+    $('body').on('touchend mouseup', '#record_submit_overlay', function(){
+        
         $('#record_submit_overlay').remove();
         $('#record_submit_form_container').remove();
     });
@@ -33,31 +36,29 @@ $(document).ready(function(){
 });
 
 function show_record_form(record){
-        if (record >= 1){
-        $('body').append('\
-            <div id="record_submit_overlay">\
-            </div>\
+    $('body').append('\
+        <div id="record_submit_overlay">\
+        </div>\
+        \
+        <div id="record_submit_form_container">\
+            <div>Your Score is : '+record+'</div>\
             \
-            <div id="record_submit_form_container">\
-                <div>Your Score is : '+record+'</div>\
+            <br>\
+            \
+            <form action="emile-pi.appspot.com/submit_record" method="post" id="pi_score_form">\
+                \
+                <label for="name">\
+                    <b>Please enter your name</b>\
+                    <input type="text" id="pi_name" name="name">\
+                </label>\
+                    <input type="hidden" id="pi_score" name="score" value="'+record+'">\
                 \
                 <br>\
                 \
-                <form action="emile-pi.appspot.com/submit_record" method="post" id="pi_score_form">\
-    \
-                    <label for="name">\
-                        <b>Please enter your name</b>\
-                        <input type="text" id="pi_name" name="name">\
-                    </label>\
-                        <input type="hidden" id="pi_score" name="score" value="'+record+'">\
-                    \
-                    <br>\
-                    \
-                    <input class="submit_btn" type="submit" value="submit">\
-    \
-                </form>\
-            </div>\
-            \
-        ')
-    };
+                <input class="submit_btn" type="submit" value="submit">\
+                \
+            </form>\
+        </div>\
+        \
+    ')
 };
