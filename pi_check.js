@@ -48,7 +48,7 @@ $(document).ready(function(){
         $('.num').css('background-color', 'rgba(20,20,20,0.8)');
     };
     
-    $('#record_attempt').on('touchend', function(){
+    $('#record_attempt').on('touchend mouseup', function(){
         challenge = true;
         practice = false;
         current_pos = 1;
@@ -57,7 +57,7 @@ $(document).ready(function(){
         clear_result();
         set_mode();
     });
-    $('#practice').on('touchend', function(){
+    $('#practice').on('touchend mouseup', function(){
         challenge = false;
         practice = true;
         current_pos = 1;
@@ -204,7 +204,7 @@ $(document).ready(function(){
     });
     
     //Checking Pi
-    $('.num').on('touchend', check_digit);
+    $('.num').on('touchend mouseup', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Submit Record: '+localStorage.record_pos)};
     

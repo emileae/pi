@@ -2,7 +2,7 @@ $(document).ready(function(){
         
         if (localStorage.record_pos == undefined){localStorage.record_pos = 0;};
         
-            $('body').on('touchend', '#record', function(){
+            $('body').on('touchend mouseup', '#record', function(){
                 
                 if (localStorage.name_id){
                     $('body').append('\
@@ -84,11 +84,15 @@ $(document).ready(function(){
         $.ajax({
             type: 'POST',
             data: {name:name, score:score},
+            dataType:'json',
             url: 'http://emile-pi.appspot.com/submit_record',
+            //xhrFields:{withCredentials: true},
+            crossDomain: true,
             success: function(data){
                 console.log(data);
                 $('#form_loading_indicator').hide();
                 alert('Your record was successfully submitted');
+                alert(data[id])
                 $('#checker').text(data[rank]);
                 localStorage.rank = data[rank];
                 localStorage.name_id = data[id];
