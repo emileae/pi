@@ -5,7 +5,7 @@ $(document).ready(function(){
         show_record_form(record);
     });
     
-    $('body').on('touchend mouseup', '#record_submit_overlay', function(){
+    $('body').on('touchstart mousedown', '#record_submit_overlay', function(){
         $('#record_submit_overlay').remove();
         $('#record_submit_form_container').remove();
     });

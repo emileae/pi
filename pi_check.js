@@ -28,6 +28,14 @@ $(document).ready(function(){
     $('#practice').css('color', 'rgba(255,255,255,0.9)');
     var practice = true;
     
+    //Set submit record button initially
+    
+    if (localStorage.record_pos){
+        $('#record').html('Submit Record: '+localStorage.record_pos+'')
+    }else{
+        $('#record').html('Submit Record: 0')
+    };
+    
     // Clear Result
     $('#key_clear').on('touchend', clear_result);
     
@@ -195,11 +203,11 @@ $(document).ready(function(){
             if (localStorage.record_pos){
                 if (current_pos >= localStorage.record_pos && challenge == true){
                     localStorage.record_pos = current_pos;//update record if bettered
-                    $('#record').text('Record: '+localStorage.record_pos);
+                    $('#record').text('Submit Record: '+localStorage.record_pos);
                 }
             }else if (challenge == true && !localStorage.record_pos){
                 localStorage.record_pos = current_pos;//if no record stored set the record
-                $('#record').text('Record: '+localStorage.record_pos);
+                $('#record').text('Submit Record: '+localStorage.record_pos);
             };
             
             $('#current_position').text('Current Position: '+current_pos);
