@@ -92,8 +92,8 @@ $(document).ready(function(){
                 console.log(data);
                 $('#form_loading_indicator').hide();
                 alert('Your record was successfully submitted');
-                alert(data[id])
-                $('#checker').text(data[rank]);
+                alert(data);
+                $('#checker').text(data);
                 localStorage.rank = data[rank];
                 localStorage.name_id = data[id];
                 localStorage.name = data[name]
