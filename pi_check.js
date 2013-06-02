@@ -89,6 +89,7 @@ $(document).ready(function(){
     // Study button  for (var i = 0; i < shoes.length; i++) {};
     
     $('#study').on('touchend mouseup', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num, false)}});
+    
     $('body').on('touchend mouseup', '#add', function(){
         $('#loading_div').show(); var num_digits = Number($('#num_digits').html()-1000); var num = Number($('#grouping_num').html())+1; print_study_digits(num, num_digits)
     });
@@ -218,7 +219,6 @@ $(document).ready(function(){
             
             $('#current_position').text('Current Position: '+current_pos);
             current_pos += 1;//update new position
-            //pos_in_list += 1;//update position in list
             pos_in_list = ((current_pos-1) % 500);//update position in list
             
             var update_pi = false;
@@ -226,12 +226,7 @@ $(document).ready(function(){
             
             if(update_pi){
                 pi = pi_110000.slice(current_pos-1, (current_pos+1000));
-                //console.log('RELOADED PI');
-                //console.log(pi)
             };
-            
-            //console.log('current_pos: '+current_pos);
-            //console.log('pos_in_list: '+pos_in_list);
         }
         else{
             if (practice){
