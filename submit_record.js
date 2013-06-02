@@ -7,6 +7,7 @@ $(document).ready(function(){
     
     $('body').on('touchend mouseup', '#record_submit_overlay', function(){
         $('#record_submit_overlay').remove();
+        $('#record_submit_form_container').remove();
     });
     
     $('body').on('submit', '#pi_score_form', function(){
