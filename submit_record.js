@@ -83,24 +83,22 @@ $(document).ready(function(){
          
         $.ajax({
             type: 'POST',
-            data: {name:name, score:score},
+            data: {name:name, score:score, name_id:name_id},
             dataType:'json',
             url: 'http://emile-pi.appspot.com/submit_record',
-            //xhrFields:{withCredentials: true},
             crossDomain: true,
             success: function(data){
-                //console.log(data['id']);
                 $('#form_loading_indicator').hide();
                 alert('Your record was successfully submitted');
-                alert(data);
                 $('#checker').text(data['id']);
-                localStorage.rank = data['rank'];
-                localStorage.name_id = data['id'];
-                localStorage.name = data['name']
+                if (data['id']){
+                    localStorage.rank = data['rank'];
+                    localStorage.name_id = data['id'];
+                    localStorage.name = data['name'];
+                };
                 close_submit_overlay();
             },
             error: function(data){
-                //console.log(data);
                 $('#form_loading_indicator').hide();
                 alert('There was an error adding your record, please try again later');
                 close_submit_overlay();

@@ -262,7 +262,7 @@ color: #CC650A;
 }
 .blue_span
 {
-color: blue;
+color: #6172ED;
 }
 .orange_span
 {
@@ -293,7 +293,7 @@ background-color: #CC650A;
 }
 .curr_pos_blue_span
 {
-background-color: blue;
+background-color: #6172ED;
 -webkit-transition:background-color 0.3s ease-in;
 }
 .curr_pos_orange_span
