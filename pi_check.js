@@ -24,8 +24,8 @@ $(document).ready(function(){
     
     //Select Mode
     var challenge = false;
-    $('#practice').css('background-color', 'rgba(0,0,0,0.9)');
-    $('#practice').css('color', 'rgba(255,255,255,0.9)');
+    $('#practice').css('background-color', '#3B0202');
+    $('#practice').html('<u>Just Practice</u>');
     var practice = true;
     
     //Set submit record button initially
@@ -44,8 +44,8 @@ $(document).ready(function(){
         current_pos = 1;
         pos_in_list = 0;
         $('#current_position').text('Current Position: 0');
-        $('#current_position').css('background-color', 'rgb(255,255,255)');
-        $('.num').css('background-color', 'rgba(0,0,0,0.2)');
+        $('#current_position').css('background-color', '#1F1515');
+        $('.num').css('background-color', 'rgba(20,20,20,0.8)');
     };
     
     $('#record_attempt').on('touchend', function(){
@@ -69,16 +69,16 @@ $(document).ready(function(){
     
     function set_mode(){
         if (challenge){
-            $('#record_attempt').css('background-color', 'rgba(0,0,0,0.9)');
-            $('#record_attempt').css('color', 'rgba(255,255,255,0.9)');
-            $('#practice').css('color', 'black');
-            $('#practice').css('background-color', 'rgba(0,0,0,0.2)');
+            $('#record_attempt').css('background-color', '#3B0202');
+            $('#practice').css('background-color', 'rgba(20,20,20,0.8)');
+            $('#practice').html('Just Practice');
+            $('#record_attempt').html('<u>Record Attempt!</u>');
             $('#study').html('<del>Study</del>');
         }else if (practice){
-            $('#practice').css('background-color', 'rgba(0,0,0,0.9)');
-            $('#practice').css('color', 'rgba(255,255,255,0.9)');
-            $('#record_attempt').css('color', 'black');
-            $('#record_attempt').css('background-color', 'rgba(0,0,0,0.2)');
+            $('#practice').css('background-color', '#3B0202');
+            $('#record_attempt').css('background-color', 'rgba(20,20,20,0.8)');
+            $('#practice').html('<u>Just Practice</u>');
+            $('#record_attempt').html('Record Attempt!');
              $('#study').html('Study');
             clear_result();
         };
@@ -88,7 +88,7 @@ $(document).ready(function(){
     
     // Study button  for (var i = 0; i < shoes.length; i++) {};
     
-    $('#study').on('touchend mouseup', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num, false)}});
+    $('#study').on('touchend', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num, false)}});
     
     $('body').on('touchend', '#add', function(){
         $('#loading_div').show(); var num_digits = Number($('#num_digits').html()-1000); var num = Number($('#grouping_num').html())+1; print_study_digits(num, num_digits)

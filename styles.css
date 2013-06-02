@@ -106,7 +106,7 @@ width: 32%;
 height: 12.5%;
 float: left;
 text-align: center;
-line-height: 3em;
+line-height: 1.5em;
 background-color: #1A060D;
 margin-top: 0.5%;
 margin-bottom: 0.5%;
@@ -126,6 +126,7 @@ border: 1px solid black;
 border-radius: 5px;
 padding: 5px;
 text-align: center;
+background-color: #1F1515
 display: inline-block;
 }
 
@@ -163,11 +164,6 @@ z-index: 100;
 color: white;
 }
 
-.grp_adj
-{
-width: 5%;
-}
-
 #study_pi
 {
 position: absolute;
@@ -202,7 +198,7 @@ clear: both;
 
 #grp_adj_container
 {
-height:40%;
+height:20%;
 }
 
 .grp_adj
@@ -212,7 +208,7 @@ width: 40%;
 height: 95%;
 float:left;
 margin: 2px;
-line-height: 4em;
+line-height: 2em;
 border: 1px solid #B5AEAE;
 border-radius: 5px;
 text-align: center;
@@ -227,7 +223,7 @@ clear: both;
 
 #num_digits_adjust_container
 {
-height:40%;
+height:50%;
 }
 
 .digit_adj
