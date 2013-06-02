@@ -30,10 +30,12 @@ $(document).ready(function(){
             ')
         });
         
-    $('body').on('touchend', '#overlay_close', function(){
+    $('body').on('touchend', '#overlay_close', close_submit_overlay);
+    
+    function close_submit_overlay(){
         $('#record_submit_overlay').remove();
         $('#record_submit_form_container').remove();
-    });
+    };
     
     $('body').on('submit', '#pi_score_form', function(){
         var name = $('#pi_name').val();
@@ -44,11 +46,13 @@ $(document).ready(function(){
             url: 'http://emile-pi.appspot.com/submit_record',
             success: function(data){
                 console.log(data);
-                alert('Your record was successfully added');
+                alert('Your record was successfully submitted');
+                close_submit_overlay();
             },
             error: function(data){
                 console.log(data);
-                alert('There was an error adding your record');
+                alert('There was an error adding your record, please try again later');
+                close_submit_overlay();
             }
         });
         return false;
