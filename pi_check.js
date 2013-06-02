@@ -48,7 +48,7 @@ $(document).ready(function(){
         $('.num').css('background-color', 'rgba(0,0,0,0.2)');
     };
     
-    $('#record_attempt').on('touchend mouseup', function(){
+    $('#record_attempt').on('touchend', function(){
         challenge = true;
         practice = false;
         current_pos = 1;
@@ -57,7 +57,7 @@ $(document).ready(function(){
         clear_result();
         set_mode();
     });
-    $('#practice').on('touchend mouseup', function(){
+    $('#practice').on('touchend', function(){
         challenge = false;
         practice = true;
         current_pos = 1;
@@ -88,34 +88,34 @@ $(document).ready(function(){
     
     // Study button  for (var i = 0; i < shoes.length; i++) {};
     
-    $('#study').on('touchend mouseup', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num, false)}});
+    $('#study').on('touchend', function(){if (practice){$('#loading_div').show(); var num = 5; study_notes(num, false)}});
     
-    $('body').on('touchend mouseup', '#add', function(){
+    $('body').on('touchend', '#add', function(){
         $('#loading_div').show(); var num_digits = Number($('#num_digits').html()-1000); var num = Number($('#grouping_num').html())+1; print_study_digits(num, num_digits)
     });
-    $('body').on('touchend mouseup', '#subtract', function(){
+    $('body').on('touchend', '#subtract', function(){
         $('#loading_div').show(); var num_digits = Number($('#num_digits').html()-1000); var num = Number($('#grouping_num').html())-1; print_study_digits(num, num_digits)
     });
         
         //changing number of digits to study
     
-    $('body').on('touchend mouseup', '#pi_add_1000', function(){
+    $('body').on('touchend', '#pi_add_1000', function(){
         $('#loading_div').show();
         var num_digits = Number($('#num_digits').html());
         var num = Number($('#grouping_num').html());
         print_study_digits(num, num_digits)
     });
     
-    $('body').on('touchend mouseup', '#pi_1K_set', function(){
+    $('body').on('touchend', '#pi_1K_set', function(){
         $('#loading_div').show(); var num_digits = 1; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
     });
-    $('body').on('touchend mouseup', '#pi_5K_set', function(){
+    $('body').on('touchend', '#pi_5K_set', function(){
         $('#loading_div').show(); var num_digits = 4000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
     });
-    $('body').on('touchend mouseup', '#pi_10K_set', function(){
+    $('body').on('touchend', '#pi_10K_set', function(){
         $('#loading_div').show(); var num_digits = 9000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
     });
-    $('body').on('touchend mouseup', '#pi_110K_set', function(){
+    $('body').on('touchend', '#pi_110K_set', function(){
         $('#loading_div').show(); var num_digits = 99000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
     });
     
@@ -155,12 +155,12 @@ $(document).ready(function(){
     
     
     
-    $('body').on('touchend mouseup', '#overlay', function(){
+    $('body').on('touchend', '#overlay', function(){
         $('#overlay').remove();
         $('#study_pi').remove();
         $('#grouping_adjust').remove();
     });
-    $('body').on('touchend mouseup', '#overlay_close', function(){
+    $('body').on('touchend', '#overlay_close', function(){
         $('#overlay').remove();
         $('#study_pi').remove();
         $('#grouping_adjust').remove();
@@ -168,23 +168,23 @@ $(document).ready(function(){
     
     
     // Key color changes
-    $('.key').on('touchstart mousedown', function(){
+    $('.key').on('touchstart', function(){
         $(this).css('background-color', 'rgba(0,0,0,0.8)');
         return false;// added because touching keys kept calling up the keyboard
     });
-    $('.key').on('touchend mouseup', function(){
+    $('.key').on('touchend', function(){
         $(this).css('background-color', 'rgba(0,0,0,0.2)');
         return false;// added because touching keys kept calling up the keyboard diabling user select probably did the trick though
     });
-    $('.fn_key').on('touchstart mousedown', function(){
+    $('.fn_key').on('touchstart', function(){
         $(this).css('background-color', 'rgba(0,0,0,0.8)');
     });
-    $('.fn_key').on('touchend mouseup', function(){
+    $('.fn_key').on('touchend', function(){
         $(this).css('background-color', 'rgba(0,0,0,0.2)');
     });
     
     //Checking Pi
-    $('.num').on('touchend click', check_digit);
+    $('.num').on('touchend', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Submit Record: '+localStorage.record_pos)};
     
