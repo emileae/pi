@@ -4,7 +4,7 @@ $(document).ready(function(){
         
             $('body').on('touchend mouseup', '#record', function(){
                 
-                if (!localStorage.name_id){
+                if (localStorage.name_id){
                     $('body').append('\
                         <div id="record_submit_overlay">\
                             <div id="overlay_close">Close</div>\
