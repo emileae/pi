@@ -4,6 +4,7 @@ $(document).ready(function(){
             
             $('body').append('\
                 <div id="record_submit_overlay">\
+                    <div id="overlay_close">Close</div>\
                 </div>\
                 \
                 <div id="record_submit_form_container">\
@@ -28,6 +29,11 @@ $(document).ready(function(){
                 \
             ')
         });
+        
+    $('body').on('touchend mouseup', '#overlay_close', function(){
+        $('#record_submit_overlay').remove();
+        $('#record_submit_form_container').remove();
+    });
     
     /*$('body').on('touchend mouseup', '#record_submit_overlay', function(){
         
