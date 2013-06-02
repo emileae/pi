@@ -58,6 +58,7 @@ $(document).ready(function(){
                 console.log(data);
                 $('#form_loading_indicator').hide();
                 alert('Your record was successfully submitted');
+                $('#checker').text(data);
                 close_submit_overlay();
             },
             error: function(data){

@@ -44,7 +44,7 @@ $(document).ready(function(){
         current_pos = 1;
         pos_in_list = 0;
         $('#current_position').text('Current Position: 0');
-        $('#current_position').css('background-color', '#1F1515');
+        $('#current_position').attr('class', 'background_ease_out');
         $('.num').css('background-color', 'rgba(20,20,20,0.8)');
     };
     
@@ -115,16 +115,16 @@ $(document).ready(function(){
     });
     
     $('body').on('touchend', '#pi_1K_set', function(){
-        $('#loading_div').show(); var num_digits = 1; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
+        var num_digits = 1; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
     });
     $('body').on('touchend', '#pi_5K_set', function(){
-        $('#loading_div').show(); var num_digits = 4000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
+        var num_digits = 4000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
     });
     $('body').on('touchend', '#pi_10K_set', function(){
-        $('#loading_div').show(); var num_digits = 9000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
+        var num_digits = 9000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
     });
     $('body').on('touchend', '#pi_110K_set', function(){
-        $('#loading_div').show(); var num_digits = 99000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
+        var num_digits = 99000; var num = Number($('#grouping_num').html()); print_study_digits(num, num_digits);
     });
     
     function study_notes (num){
@@ -329,7 +329,7 @@ function lm_check(digit){
     var is_space = false;
     if (digit == " "){is_space = true};
     
-    var Class = false
+    var Class = false;
     
     var lm_10 = digit%10;
     var lm_100 = digit%100;
