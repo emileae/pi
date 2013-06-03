@@ -48,7 +48,7 @@ $(document).ready(function(){
         $('.num').css('background-color', 'rgba(20,20,20,0.8)');
     };
     
-    $('#record_attempt').on('touchend mouseup', function(){
+    $('#record_attempt').on('touchend', function(){
         challenge = true;
         practice = false;
         current_pos = 1;
@@ -57,7 +57,7 @@ $(document).ready(function(){
         clear_result();
         set_mode();
     });
-    $('#practice').on('touchend mouseup', function(){
+    $('#practice').on('touchend', function(){
         challenge = false;
         practice = true;
         current_pos = 1;
@@ -145,11 +145,11 @@ $(document).ready(function(){
                 <div class="num_digit_rec">No. of Digits: <span id="num_digits">1000</span>\</div>\
                 \
                 <div id="num_digits_adjust_container">\
-                    <div id="pi_add_1000" class="digit_adj">add 1000 digits</div>\
-                    <div id="pi_1K_set" class="digit_adj">&#960 to 1001 digits</div>\
-                    <div id="pi_5K_set" class="digit_adj">&#960 to 5K digits</div>\
-                    <div id="pi_10K_set" class="digit_adj">&#960 to 10K digits</div>\
-                    <div id="pi_110K_set" class="digit_adj">&#960 to 100K</div>\
+                    <div id="pi_add_1000" class="digit_adj"> + <br> 1000<br> digits</div>\
+                    <div id="pi_1K_set" class="digit_adj">&#960 to<br> 1001<br> digits</div>\
+                    <div id="pi_5K_set" class="digit_adj">&#960 to<br> 5K<br> digits</div>\
+                    <div id="pi_10K_set" class="digit_adj">&#960 to<br> 10K<br> digits</div>\
+                    <div id="pi_110K_set" class="digit_adj">&#960 to<br> 100K<br> digits</div>\
                 </div>\
             </div>\
             ');
@@ -203,7 +203,7 @@ $(document).ready(function(){
     });
     
     //Checking Pi
-    $('.num').on('touchend mouseup', check_digit);
+    $('.num').on('touchend', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Submit Record: '+localStorage.record_pos)};
     

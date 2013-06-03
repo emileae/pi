@@ -3,7 +3,7 @@ $(document).ready(function(){
         if (localStorage.record_pos == undefined){localStorage.record_pos = 0;};
         if (localStorage.time == undefined){localStorage.time = last_time;};
         
-            $('body').on('touchend mouseup', '#record', function(){
+            $('body').on('touchend', '#record', function(){
                 
                 if (localStorage.name_id){
                     $('body').append('\
