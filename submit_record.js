@@ -3,7 +3,7 @@ $(document).ready(function(){
         if (localStorage.record_pos == undefined){localStorage.record_pos = 0;};
         if (localStorage.time == undefined){localStorage.time = last_time;};
         
-            $('body').on('touchend', '#record', function(){
+            $('body').on('touchend mouseup', '#record', function(){
                 
                 if (localStorage.name_id){
                     $('body').append('\
@@ -24,6 +24,7 @@ $(document).ready(function(){
                                 \
                                     <input type="hidden" id="pi_name_id" name="name_id" value="'+localStorage.name_id+'">\
                                     <input type="hidden" id="pi_name" name="name" value="">\
+                                    <input type="hidden" id="pi_time" name="time" value="'+localStorage.time+'">\
                                     <input type="hidden" id="pi_score" name="score" value="'+localStorage.record_pos+'">\
                                 \
                                 <br>\
@@ -55,6 +56,7 @@ $(document).ready(function(){
                                     <input type="text" id="pi_name" name="name">\
                                 </label>\
                                     <input type="hidden" id="pi_name_id" name="name_id" value="">\
+                                    <input type="hidden" id="pi_time" name="time" value="'+localStorage.time+'">\
                                     <input type="hidden" id="pi_score" name="score" value="'+localStorage.record_pos+'">\
                                 \
                                 <br>\
@@ -85,28 +87,40 @@ $(document).ready(function(){
         var name = $('#pi_name').val();
         var name_id = $('#pi_name_id').val();
         var score = $('#pi_score').val();
+        var time = $('#pi_time').val();
          
         $.ajax({
             type: 'POST',
-            data: {name:name, score:score, name_id:name_id},
+            data: {name:name, score:score, name_id:name_id, time:time},
             dataType:'json',
             url: 'http://emile-pi.appspot.com/submit_record',
             crossDomain: true,
             success: function(data){
-                $('#form_loading_indicator').hide();
-                alert('Your record was successfully submitted');
+                $('#form_loading_indicator').html('<div>Your record was successfully submitted</div><div id="loading_div_close">Close</div>')
+                
+                //alert('Your record was successfully submitted');
                
-                if (data['id']){
-                    localStorage.rank = data['rank'];
-                    localStorage.name_id = data['id'];
-                    localStorage.name = data['name'];
-                };
-                close_submit_overlay();
+               $('body').on('touchend mouseup', '#loading_div_close', function(){
+                    $('#form_loading_indicator').hide();
+               
+                    if (data['id']){
+                        localStorage.rank = data['rank'];
+                        localStorage.name_id = data['id'];
+                        localStorage.name = data['name'];
+                    };
+                    close_submit_overlay();
+               });
+               
+                
             },
             error: function(data){
-                $('#form_loading_indicator').hide();
-                alert('There was an error adding your record, please try again later');
-                close_submit_overlay();
+                $('#form_loading_indicator').html('<div>Your record was successfully submitted</div><div id="loading_div_close">Close</div>')
+                
+               $('body').on('touchend mouseup', '#loading_div_close', function(){
+                    $('#form_loading_indicator').hide();
+                    //alert('There was an error adding your record, please try again later');
+                    close_submit_overlay();
+                });
             }
         });
         return false;

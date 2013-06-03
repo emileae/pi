@@ -19,6 +19,9 @@ $(document).ready(function(){
     //Hide Loading div
     $('#loading_div').hide()
     
+    //set current position background color
+    $('#current_position').attr('class', 'background_ease_out');
+    
     //setting the #result_footer height to prevent crazy bouncing for first few digits
     $('#result_footer').css('height', '2em');
     
