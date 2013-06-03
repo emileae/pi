@@ -12,7 +12,7 @@ $(document).ready(function(){
                         \
                         <div id="record_submit_form_container">\
                             <div id="log_container">\
-                                <div id="score_log" class="log_box">Record: '+localStorage.record_pos+'</div>\
+                                <div id="score_log" class="log_box">'+localStorage.record_pos+' <span class="small_txt">decimals in</span> '+localStorage.time+' <span class="small_txt">seconds</span></div>\
                                 <div id="rank_log" class="log_box">Rank: '+localStorage.rank+'</div>\
                                 <div id="id_log" class="log_box">ID: '+localStorage.name_id+'</div>\
                             </div>\

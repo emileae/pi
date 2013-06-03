@@ -48,7 +48,7 @@ $(document).ready(function(){
         $('.num').css('background-color', 'rgba(20,20,20,0.8)');
     };
     
-    $('#record_attempt').on('touchend', function(){
+    $('#record_attempt').on('touchend mouseup', function(){
         challenge = true;
         practice = false;
         current_pos = 1;
@@ -57,7 +57,7 @@ $(document).ready(function(){
         clear_result();
         set_mode();
     });
-    $('#practice').on('touchend', function(){
+    $('#practice').on('touchend mouseup', function(){
         challenge = false;
         practice = true;
         current_pos = 1;
@@ -203,7 +203,7 @@ $(document).ready(function(){
     });
     
     //Checking Pi
-    $('.num').on('touchend', check_digit);
+    $('.num').on('touchend mouseup', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Submit Record: '+localStorage.record_pos)};
     
@@ -252,6 +252,10 @@ $(document).ready(function(){
                 $('#key_'+pi[pos_in_list]).css('background-color', '#C21313');//if incorrect input then highlight correct position in red
             }else if (challenge){
                 alert('Incorrect! your record is: '+localStorage.record_pos+' digits.');
+                
+                var record_error = true;//var from timer.js
+                stop_timer(start_time, record_error, current_pos);// start time comes from timer.js
+                
                 clear_result();
             };
         };

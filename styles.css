@@ -362,6 +362,11 @@ margin-right: 5%;
 text-align: center;
 }
 
+.small_txt
+{
+font-size: 0.8em;
+}
+
 #score_log
 {
 font-size: 3em;
