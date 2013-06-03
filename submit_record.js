@@ -1,6 +1,7 @@
 $(document).ready(function(){
         
         if (localStorage.record_pos == undefined){localStorage.record_pos = 0;};
+        if (localStorage.time == undefined){localStorage.time = last_time;};
         
             $('body').on('touchend mouseup', '#record', function(){
                 
@@ -94,7 +95,7 @@ $(document).ready(function(){
             success: function(data){
                 $('#form_loading_indicator').hide();
                 alert('Your record was successfully submitted');
-                $('#checker').text(data['id']);
+               
                 if (data['id']){
                     localStorage.rank = data['rank'];
                     localStorage.name_id = data['id'];

@@ -1,6 +1,7 @@
 var start_time = ""//setting start time as a global variable
 var go_for_record = false;//not initially going for a record
 var key_pushed = false;//no num keys are pushed initially
+var last_time = "";
 
 $(document).ready(function(){
     
@@ -43,7 +44,9 @@ function stop_timer(start_time, record_error, current_pos){
         start_time = "";//reset start time
         key_pushed = false;//reset start key press
         if (current_pos >= localStorage.record_pos){
-            localStorage.time = time_diff//in seconds
+            localStorage.time = time_diff;//in seconds
+            last_time = time_diff;
+            $('#checker').text('time: '+time_diff);
         }else if(localStorage.time && current_pos == localStorage.record_pos){
             if (time_diff < localStorage.time){
                 localStorage.time = time_diff;
