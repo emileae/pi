@@ -46,7 +46,7 @@ function stop_timer(start_time, record_error, current_pos){
         if (current_pos >= localStorage.record_pos){
             localStorage.time = time_diff;//in seconds
             last_time = time_diff;
-            $('#checker').text('Best: '+localStorage.record_pos+'decimals in '+time_diff+''seconds);
+            $('#checker').text('Best: '+localStorage.record_pos+'decimals in '+time_diff+'seconds');
         }else if(localStorage.time && current_pos == localStorage.record_pos){
             if (time_diff < localStorage.time){
                 localStorage.time = time_diff;
