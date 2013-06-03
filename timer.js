@@ -37,6 +37,7 @@ function stop_timer(start_time, record_error, current_pos){
     if (record_error){
         var stop_time = new Date();
         var time_diff = Math.round((stop_time - start_time)/1000);
+        start_time = "";//reset start time
         if (current_pos >= localStorage.record_pos){
             localStorage.time = time_diff//in seconds
         }else if(localStorage.time && current_pos == localStorage.record_pos){
