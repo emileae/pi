@@ -22,7 +22,7 @@ $(document).ready(function(){
 
     var challenge = false;
     $('#practice').css('background-color', '#3B0202');
-    $('#practice').html('<u>Just Practice</u>');
+    $('#practice').html('<u>Practice</u>');
     var practice = true;
     
     if (localStorage.record_pos){
@@ -65,13 +65,13 @@ $(document).ready(function(){
         if (challenge){
             $('#record_attempt').css('background-color', '#3B0202');
             $('#practice').css('background-color', 'rgba(20,20,20,0.8)');
-            $('#practice').html('Just Practice');
+            $('#practice').html('Practice');
             $('#record_attempt').html('<u>Record Attempt!</u>');
             $('#study').html('<del>Study</del>');
         }else if (practice){
             $('#practice').css('background-color', '#3B0202');
             $('#record_attempt').css('background-color', 'rgba(20,20,20,0.8)');
-            $('#practice').html('<u>Just Practice</u>');
+            $('#practice').html('<u>Practice</u>');
             $('#record_attempt').html('Record Attempt!');
              $('#study').html('Study');
             clear_result();
