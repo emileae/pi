@@ -184,6 +184,18 @@ $(document).ready(function(){
     $('body').on('touchend', '.digit_adj', function(){
         $(this).css('background-color', '#1A060D');
     });
+    $('body').on('touchstart', '#overlay_close', function(){
+        $(this).css('background-color', 'rgb(50,50,50)');
+    });
+    $('body').on('touchend', '#overlay_close', function(){
+        $(this).css('background-color', 'rgb(0,0,0)');
+    });
+    $('body').on('touchstart', '#error_indicator_close', function(){
+        $(this).css('background-color', 'rgb(50,50,50)');
+    });
+    $('body').on('touchend', '#error_indicator_close', function(){
+        $(this).css('background-color', 'rgb(0,0,0)');
+    });
     
     $('.num').on('touchend', check_digit);
     
