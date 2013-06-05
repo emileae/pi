@@ -235,10 +235,17 @@ $(document).ready(function(){
                 var record_error = true;
                 var time = stop_timer(start_time, record_error, current_pos);
                 
-                $('body').append('<div id="error_indicator" style="width:100%; text-align:center;">\
-                Incorrect! your record is: '+localStorage.record_pos+' digits. Time '+time+'\
-                <div id="error_indicator_close">Close</div>\
-                </div>');
+                if (current_pos < localStorage.record_pos){
+                    $('body').append('<div id="error_indicator" style="width:100%; text-align:center;">\
+                    You managed: '+current_pos+' decimals in '+time+' sec<br> Best: '+localStorage.record_pos+' decimals.\
+                    <div id="error_indicator_close">Close</div>\
+                    </div>');
+                }else if(current_pos > localStorage.record_pos){
+                    $('body').append('<div id="error_indicator" style="width:100%; text-align:center;">\
+                    Well Done!<br> You managed: '+current_pos+' decimals in '+time+' sec<br> Your best so far!\
+                    <div id="error_indicator_close">Close</div>\
+                    </div>');
+                };
                 
                 clear_result();
             };
