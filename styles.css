@@ -38,6 +38,15 @@ margin-right: 5%;
 -webkit-tap-highlight-color: transparent;
 }
 
+#web_address
+{
+width: 100%;
+clear: both;
+text-align: center;
+}
+
+a { color: inherit; }
+
 .key
 {
 width: 32%;
@@ -362,7 +371,7 @@ margin-right: 5%;
 text-align: center;
 }
 
-#form_loading_indicator
+#form_loading_indicator, #error_indicator
 {
 position: absolute;
 top: 40%;
@@ -396,7 +405,7 @@ animation-iteration-count:infinite;
 100% {background:#5C0711;}
 }
 
-#loading_div_close
+#loading_div_close, #error_indicator_close
 {
 border: 1px solid white;
 border-radius: 5px;

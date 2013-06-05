@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns = "http://www.w3.org/ns/widgets"
-        id        = "pi.com.scknss.www"
+        id        = "com.piheroes.www"
         version   = "0.0.1">
 
     <!-- versionCode is optional and Android only -->
 
-    <name>Pi Experiment</name>
+    <name>Pi Heroes</name>
 
     <description>
-        Memorizing Pi
+        Test your memory by seeing how many decimal places of pi you can remember. See how you compare by posting your top scores to www.piheroes.com.
     </description>
 
-    <author href="http://www.scknss.com" email="emile@scknss.com">
+    <author href="http://www.piheroes.com" email="admin@piheroes.com">
         Emile
     </author>
+    
+    <icon src="icon.png" />
+    <gap:splash src="splash.png" />
     
     <preference name="orientation" value="portrait" />
     <preference name="phonegap-version" value="2.7.0" />

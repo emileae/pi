@@ -1,6 +1,5 @@
 
-//Set position in pi
-var current_pos = 1;//12999
+var current_pos = 1;
 var pos_in_list = ((current_pos-1) % 500);
 
 var pi = ""
@@ -11,35 +10,27 @@ var pi_1000 = '14159265358979323846264338327950288419716939937510582097494459230
 var pi_study = pi_1000;
 
 $(document).ready(function(){
-    
-    //var pre_load = pi_110000.slice(12500, 13001);
+
     var pre_load = pi_1000;
     pi = pre_load;
-    
-    //Hide Loading div
+
     $('#loading_div').hide()
-    
-    //set current position background color
+
     $('#current_position').attr('class', 'background_ease_out');
-    
-    //setting the #result_footer height to prevent crazy bouncing for first few digits
+
     $('#result_footer').css('height', '2em');
-    
-    //Select Mode
+
     var challenge = false;
     $('#practice').css('background-color', '#3B0202');
     $('#practice').html('<u>Just Practice</u>');
     var practice = true;
-    
-    //Set submit record button initially
     
     if (localStorage.record_pos){
         $('#record').html('Submit Record: '+localStorage.record_pos+'')
     }else{
         $('#record').html('Submit Record: 0')
     };
-    
-    // Clear Result
+
     $('#key_clear').on('touchend', clear_result);
     
     function clear_result (){
@@ -87,9 +78,6 @@ $(document).ready(function(){
         };
     };
 
-    
-    
-    // Study button  for (var i = 0; i < shoes.length; i++) {};
     $('#study').on('touchstart', function(){$('#loading_div').show(); if (practice){var num = 5; study_notes(num, false)}else{$('#loading_div').hide();}});
     
     $('body').on('touchend', '#add', function(){
@@ -106,8 +94,6 @@ $(document).ready(function(){
         };
         print_study_digits(num, num_digits)
     });
-        
-        //changing number of digits to study
     
     $('body').on('touchend', '#pi_add_1000', function(){
         $('#loading_div').show();
@@ -159,12 +145,7 @@ $(document).ready(function(){
             
             print_study_digits(num, false)
     };
-    /* END Study button */
-    
-    
-    
-    
-    
+  
     $('body').on('touchend', '#overlay', function(){
         $('#overlay').remove();
         $('#study_pi').remove();
@@ -176,15 +157,14 @@ $(document).ready(function(){
         $('#grouping_adjust').remove();
     });
     
-    
-    // Key color changes && feedback
+
     $('.key').on('touchstart', function(){
         $(this).css('background-color', 'rgba(100,100,100,0.8)');
-        return false;// added because touching keys kept calling up the keyboard
+        return false;
     });
     $('.key').on('touchend', function(){
         $(this).css('background-color', 'rgba(20,20,20,0.8)');
-        return false;// added because touching keys kept calling up the keyboard diabling user select probably did the trick though
+        return false;
     });
     $('.fn_key').on('touchstart', function(){
         $(this).css('background-color', '#331721');
@@ -205,17 +185,14 @@ $(document).ready(function(){
         $(this).css('background-color', '#1A060D');
     });
     
-    //Checking Pi
     $('.num').on('touchend', check_digit);
     
     if (localStorage.record_pos){$('#record').text('Submit Record: '+localStorage.record_pos)};
     
     function check_digit (){
 
-        //checking input digits
         if($(this).text() == pi[pos_in_list]){
 
-            //check for landmarks
             var Class = lm_check(current_pos);
             
             if (Class != false){
@@ -231,17 +208,17 @@ $(document).ready(function(){
             result_scroll.refresh();
             if (localStorage.record_pos){
                 if (current_pos >= localStorage.record_pos && challenge == true){
-                    localStorage.record_pos = current_pos;//update record if bettered
+                    localStorage.record_pos = current_pos;
                     $('#record').text('Submit Record: '+localStorage.record_pos);
                 }
             }else if (challenge == true && !localStorage.record_pos){
-                localStorage.record_pos = current_pos;//if no record stored set the record
+                localStorage.record_pos = current_pos;
                 $('#record').text('Submit Record: '+localStorage.record_pos);
             };
             
             $('#current_position').text('Current Position: '+current_pos);
-            current_pos += 1;//update new position
-            pos_in_list = ((current_pos-1) % 500);//update position in list
+            current_pos += 1;
+            pos_in_list = ((current_pos-1) % 500);
             
             var update_pi = false;
             if (pos_in_list == 0){update_pi = true}
@@ -252,24 +229,30 @@ $(document).ready(function(){
         }
         else{
             if (practice){
-                $('#key_'+pi[pos_in_list]).css('background-color', '#C21313');//if incorrect input then highlight correct position in red
+                $('#key_'+pi[pos_in_list]).css('background-color', '#C21313');
             }else if (challenge){
-                alert('Incorrect! your record is: '+localStorage.record_pos+' digits.');
                 
-                var record_error = true;//var from timer.js
-                stop_timer(start_time, record_error, current_pos);// start time comes from timer.js
+                var record_error = true;
+                var time = stop_timer(start_time, record_error, current_pos);
+                
+                $('body').append('<div id="error_indicator" style="width:100%; text-align:center;">\
+                Incorrect! your record is: '+localStorage.record_pos+' digits. Time '+time+'\
+                <div id="error_indicator_close">Close</div>\
+                </div>');
                 
                 clear_result();
             };
         };
-        return false;// added because touching keys kept calling up the keyboard
+        return false;
     };
+    
+     $('body').on('touchend', '#error_indicator_close', function(){
+        $('#error_indicator').remove();
+     });
     
     result_scroll = new iScroll('result', {hScrollbar: false, vScrollbar: true, lockDirection: true });
     
 });
-
-//External function for printing study digits
 
 function print_study_digits (num, num_digits){
     
@@ -329,7 +312,6 @@ function print_study_digits (num, num_digits){
     
 };
 
-//Check for landmarks function
 function lm_check(digit){
     
     var is_space = false;
@@ -363,21 +345,3 @@ function lm_check(digit){
     return Class
     
 };
-
-
-
-
-
-
-
-/* //Checking if browser supports local storage
-    if(typeof(Storage)!=="undefined")
-  {
-  //alert('Yes! localStorage and sessionStorage support!')
-  // Some code.....
-  }
-else
-  {
-  //alert('Sorry! No web storage support..')
-  }
-*/

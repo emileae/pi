@@ -3,7 +3,7 @@ $(document).ready(function(){
         if (localStorage.record_pos == undefined){localStorage.record_pos = 0;};
         if (localStorage.time == undefined){localStorage.time = last_time;};
         
-            $('body').on('touchend mouseup', '#record', function(){
+            $('body').on('touchend', '#record', function(){
                 
                 if (localStorage.name_id){
                     $('body').append('\
@@ -74,21 +74,16 @@ $(document).ready(function(){
             });
         
     $('body').on('touchend', '#overlay_close', close_submit_overlay);
-    
     function close_submit_overlay(){
         $('#record_submit_overlay').remove();
         $('#record_submit_form_container').remove();
     };
-    
     $('body').on('submit', '#pi_score_form', function(){
-        
         $('#form_loading_indicator').show();
-        
         var name = $('#pi_name').val();
         var name_id = $('#pi_name_id').val();
         var score = $('#pi_score').val();
         var time = $('#pi_time').val();
-         
         $.ajax({
             type: 'POST',
             data: {name:name, score:score, name_id:name_id, time:time},
@@ -96,13 +91,9 @@ $(document).ready(function(){
             url: 'http://emile-pi.appspot.com/submit_record',
             crossDomain: true,
             success: function(data){
-                $('#form_loading_indicator').html('<div>Your record was successfully submitted</div><div id="loading_div_close">Close</div>')
-                
-                //alert('Your record was successfully submitted');
-               
-               $('body').on('touchend mouseup', '#loading_div_close', function(){
+               $('#form_loading_indicator').html('<div>Your record was successfully submitted</div><div id="loading_div_close">Close</div>')
+               $('body').on('touchend', '#loading_div_close', function(){
                     $('#form_loading_indicator').hide();
-               
                     if (data['id']){
                         localStorage.rank = data['rank'];
                         localStorage.name_id = data['id'];
@@ -110,21 +101,16 @@ $(document).ready(function(){
                     };
                     close_submit_overlay();
                });
-               
-                
             },
             error: function(data){
                 $('#form_loading_indicator').html('<div>Your record was successfully submitted</div><div id="loading_div_close">Close</div>')
                 
-               $('body').on('touchend mouseup', '#loading_div_close', function(){
+               $('body').on('touchend', '#loading_div_close', function(){
                     $('#form_loading_indicator').hide();
-                    //alert('There was an error adding your record, please try again later');
                     close_submit_overlay();
                 });
             }
         });
         return false;
     });
-    
-    
 });
