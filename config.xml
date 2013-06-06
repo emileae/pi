@@ -26,6 +26,7 @@
     <preference name="orientation" value="portrait" />
     <preference name="phonegap-version" value="2.7.0" />
     <preference name="detect-data-types" value="false" />
+    <preference name="fullscreen" value="true" />
     
     <access origin="*" />
     

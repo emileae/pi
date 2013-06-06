@@ -13,9 +13,9 @@ $(document).ready(function(){
                         \
                         <div id="record_submit_form_container">\
                             <div id="log_container">\
-                                <div id="score_log" class="log_box">'+localStorage.record_pos+' <span class="small_txt">digits in</span> '+localStorage.time+' <span class="small_txt">seconds</span></div>\
+                                <div id="score_log" class="log_box">'+localStorage.record_pos+' digits<br> in<br> '+localStorage.time+' <span class="small_txt">seconds</span></div>\
                                 <div id="rank_log" class="log_box">Rank: '+localStorage.rank+'</div>\
-                                <div id="id_log" class="log_box">Your ID: '+localStorage.name_id+' <br>(use to find your position in the rankings at www.piheroes.com)</div>\
+                                <div id="id_log" class="log_box">Your ID: '+localStorage.name_id+' <br>(use your ID at www.piheroes.com to see where you place in the rankings)</div>\
                             </div>\
                             \
                             <br>\
@@ -29,7 +29,7 @@ $(document).ready(function(){
                                 \
                                 <br>\
                                 \
-                                <input class="submit_btn" type="submit" value="Submit my Record">\
+                                <input class="submit_btn" type="submit" value="Submit">\
                                 \
                             </form>\
                             <div id="form_loading_indicator" style="width:100%; text-align:center;">Loading</div>\
@@ -61,7 +61,7 @@ $(document).ready(function(){
                                 \
                                 <br>\
                                 \
-                                <input class="submit_btn" type="submit" value="submit">\
+                                <input class="submit_btn" type="submit" value="Submit">\
                                 \
                             </form>\
                             <div id="form_loading_indicator" style="width:100%; text-align:center;">Loading</div>\
