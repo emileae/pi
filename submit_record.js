@@ -1,7 +1,7 @@
 $(document).ready(function(){
         
-        if (localStorage.record_pos == undefined){localStorage.record_pos = 0;};
-        if (localStorage.time == undefined){localStorage.time = last_time;};
+        if (localStorage.record_pos == undefined){localStorage.record_pos = 0};
+        if (localStorage.time == undefined){localStorage.time = last_time};
         
             $('body').on('touchend', '#record', function(){
                 
@@ -103,7 +103,7 @@ $(document).ready(function(){
                });
             },
             error: function(data){
-                $('#form_loading_indicator').html('<div>Your record was successfully submitted</div><div id="loading_div_close">Close</div>')
+                $('#form_loading_indicator').html('<div>There was a problem submitting your score, try again later</div><div id="loading_div_close">Close</div>')
                 
                $('body').on('touchend', '#loading_div_close', function(){
                     $('#form_loading_indicator').hide();
